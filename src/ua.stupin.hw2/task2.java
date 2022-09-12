@@ -1,4 +1,4 @@
-package ua.stupin.ua.stupin.hw2;
+package ua.stupin.hw2;
 
 public class task2 {
     public static void main(String[] args){
