@@ -1,4 +1,4 @@
-package ua.stupin.hw3;
+package ua.stupin.ua.stupin.hw3;
 import java.util.Scanner;
 
 public class task2 {
