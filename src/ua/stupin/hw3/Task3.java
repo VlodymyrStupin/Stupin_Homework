@@ -1,18 +1,18 @@
 package ua.stupin.ua.stupin.hw3;
 import java.util.Scanner;
 
-public class task3 {
+public class Task3 {
     public static void main(String[] args) {
         int countWords = 0;
-        wordsCounter(countWords);
+        countWords = wordsCounter(countWords);
+        System.out.println("The number of words in your sentence is: " + countWords);
     }
     private static String inputSetence() {
         Scanner s = new Scanner(System.in);
         System.out.println("Input a sentence: ");
-        String sentence = s.nextLine();
-        return sentence;
+        return s.nextLine();
     }
-    private static void wordsCounter(int countWords) {
+    private static int wordsCounter(int countWords) {
         String sentence = inputSetence();
         if(sentence.length() != 0){
             countWords++;
@@ -26,6 +26,6 @@ public class task3 {
                 }
             }
         }
-        System.out.println("The number of words in your sentence is: " + countWords);
+        return countWords;
     }
 }

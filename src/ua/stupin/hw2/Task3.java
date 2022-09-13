@@ -1,6 +1,6 @@
 package ua.stupin.ua.stupin.hw2;
 
-public class task3 {
+public class Task3 {
     public static void main(String[] args) {
         int number = 1;
         checkNumberEvenOrOddN(number);

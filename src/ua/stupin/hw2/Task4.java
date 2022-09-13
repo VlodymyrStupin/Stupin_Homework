@@ -1,6 +1,6 @@
 package ua.stupin.ua.stupin.hw2;
 
-public class task4 {
+public class Task4 {
     public static void main(String[] args) {
         int firstNumber = -4;
         int secondNumber = 2;

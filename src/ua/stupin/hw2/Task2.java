@@ -1,6 +1,6 @@
 package ua.stupin.ua.stupin.hw2;
 
-public class task2 {
+public class Task2 {
     public static void main(String[] args){
         double xA = -2;     double yA = 2;
         double xB = 3;      double yB = 3;

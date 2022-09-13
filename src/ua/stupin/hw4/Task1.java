@@ -1,6 +1,6 @@
 package ua.stupin.ua.stupin.hw4;
 
-public class task1 {
+public class Task1 {
     public static void main(String[] args) {
         int[] arrayFourHundred = new int[400];
         for (int i = 0; i < arrayFourHundred.length; i++) {

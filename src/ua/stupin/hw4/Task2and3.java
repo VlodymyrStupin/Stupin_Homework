@@ -1,6 +1,6 @@
 package ua.stupin.ua.stupin.hw4;
 
-public class task2and3 {
+public class Task2and3 {
     public static void main(String[] args) {
         int[] arrayThousand = new int[10];
         int primeNumber = 0;

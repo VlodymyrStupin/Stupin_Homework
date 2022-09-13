@@ -1,7 +1,7 @@
 package ua.stupin.ua.stupin.hw3;
 import java.util.Scanner;
 
-public class task4 {
+public class Task4 {
     public static void main(String[] args) {
         System.out.println("Welcome to the show 'Guess the number'");
         int computerNumber = riddleNumber();

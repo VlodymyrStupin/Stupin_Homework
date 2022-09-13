@@ -1,19 +1,21 @@
 package ua.stupin.ua.stupin.hw3;
 import java.util.Scanner;
 
-public class task2 {
+public class Task2 {
     public static void main(String[] args) {
         String palindrome = "";
-        Scanner s = new Scanner(System.in);
         System.out.println("Input a sentence: ");
+        Scanner s = new Scanner(System.in);
         String sentence = s.nextLine();
-        String sentenceWithoutWhitespace = sentence.replaceAll("\\s", "");
-        char[] letters = sentenceWithoutWhitespace.toCharArray();
-        palindrome = countLetters(letters, palindrome);
-        palindromeOrNot(palindrome, sentenceWithoutWhitespace);
+        palindrome = isPalindrome(sentenceWithoutWhitespace(sentence), palindrome);
+        palindromeOrNot(palindrome, palindrome);
         s.close();
     }
-    private static String countLetters(char[] letters, String palindrome) {
+    private static char[] sentenceWithoutWhitespace (String sentence){
+        String sentenceWithoutWhitespace = sentence.replaceAll("\\s", "");
+        return sentenceWithoutWhitespace.toCharArray();
+    }
+    private static String isPalindrome(char[] letters, String palindrome) {
         for (int i = 0, j = letters.length - 1; i < letters.length / 2; i++, j--) {
             if (letters[i] == letters[j]) {
                 palindrome = "True";
