@@ -22,9 +22,9 @@ public class Task1 {
         for (int i = 0; i < emptyTwoDimensionalArray.length; i++) {
             for (int j = 0; j < emptyTwoDimensionalArray[i].length; j++) {
                 if(i % 2 == 0){
-                    emptyTwoDimensionalArray[i][j] = -j - 1;
+                    emptyTwoDimensionalArray[i][j] = -j;
                 } else {
-                    emptyTwoDimensionalArray[i][j] = j + 1;
+                    emptyTwoDimensionalArray[i][j] = j;
                 }
             }
         }
