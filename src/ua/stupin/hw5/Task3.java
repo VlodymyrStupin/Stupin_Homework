@@ -14,7 +14,7 @@ public class Task3 {
         System.arraycopy(twoDimensionalArray, 0, emptyTwoDimensionalArray, 0, emptyTwoDimensionalArray.length);
         twoDimensionalArray = filedTwoDimensionalArray(emptyTwoDimensionalArray);
         System.out.println("");
-        changeRowToColumn(twoDimensionalArray);
+        rotateArray(twoDimensionalArray);
     }
 
 
@@ -33,19 +33,20 @@ public class Task3 {
         return  emptyTwoDimensionalArray;
     }
 
-    public static int[][] changeRowToColumn(int[][] twoDimensionalArray){
+    public static int[][] rotateArray (int[][] twoDimensionalArray){
+        int [][] newTwoDimensionalArray = new int[twoDimensionalArray[0].length][twoDimensionalArray.length];
         for (int i = 0; i < twoDimensionalArray.length; i++) {
             for (int j = 0; j < twoDimensionalArray[i].length; j++) {
-                twoDimensionalArray[i][j] = twoDimensionalArray[j][i];
+                newTwoDimensionalArray[j][i] = twoDimensionalArray[i][j];
             }
         }
-        for (int i = 0; i < twoDimensionalArray.length; i++){
-            for (int j = 0; j < twoDimensionalArray.length; j++){
-                System.out.print(twoDimensionalArray[i][j] + " ");
+        for (int i = 0; i < newTwoDimensionalArray.length; i++){
+            for (int j = 0; j < newTwoDimensionalArray.length; j++){
+                System.out.print(newTwoDimensionalArray[i][j] + " ");
             }
             System.out.println();
         }
-        return  twoDimensionalArray;
+        return  newTwoDimensionalArray;
     }
 
 }
