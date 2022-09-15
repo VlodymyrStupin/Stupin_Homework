@@ -10,9 +10,9 @@ import java.util.Arrays;
 public class Task3 {
     public static void main(String[] args) {
         int[][] twoDimensionalArray = new int [2][2];
-        int[][] emptyTwoDimensionalArray = new int[twoDimensionalArray.length][twoDimensionalArray.length];
-        System.arraycopy(twoDimensionalArray, 0, emptyTwoDimensionalArray, 0, emptyTwoDimensionalArray.length);
-        twoDimensionalArray = filedTwoDimensionalArray(emptyTwoDimensionalArray);
+        int[][] copyTwoDimensionalArray = new int[twoDimensionalArray.length][twoDimensionalArray.length];
+        System.arraycopy(twoDimensionalArray, 0, copyTwoDimensionalArray, 0, copyTwoDimensionalArray.length);
+        twoDimensionalArray = filedTwoDimensionalArray(copyTwoDimensionalArray);
         System.out.println("");
         rotateArray(twoDimensionalArray);
     }
