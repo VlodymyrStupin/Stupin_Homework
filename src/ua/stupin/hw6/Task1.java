@@ -13,37 +13,45 @@ package ua.stupin.ua.stupin.hw6;
 //        Вызвать эти методы для каждого из объектов.
 public class Task1 {
     static class Phone {
-        int number = 456;
-        String model = "S6";
-        int weight = 165;
+        int number;
+        String model;
+        int weight;
 
-        Phone(int number, String model, int weight) {
+        public Phone(int number, String model, int weight) {
             this.number = number;
             this.model = model;
             this.weight = weight;
         }
-        Phone(int number, String model) {
+        public Phone(int number, String model) {
             this.number = number;
             this.model = model;
         }
-        Phone(){
+        public Phone(){
         }
-        public void receiveCall(String whoCall){
-            whoCall = "John";
+        private void receiveCall(String whoCall){
             System.out.println("Calls " + whoCall);
         }
 
-        public void getNumber(int number){
-            number = 12345;
+        private void getNumber(int number){
             System.out.println(number);
         }
     }
     public static void main(String[] args) {
-        Phone myPhone = new Phone();
-        System.out.println(myPhone.number);
-        System.out.println(myPhone.model);
-        System.out.println(myPhone.weight);
-        myPhone.receiveCall("");
-        myPhone.getNumber(0);
+        Phone firstPhone = new Phone(123, "S1", 1000);
+        Phone secondPhone = new Phone(456, "S2");
+        Phone thirdPhone = new Phone();
+        secondPhone.weight = 2000;
+        thirdPhone.number = 789;
+        thirdPhone.model = "S3";
+        thirdPhone.weight = 3000;
+        System.out.println(firstPhone.number +" "+ firstPhone.model +" "+ firstPhone.weight);
+        System.out.println(secondPhone.number +" "+ secondPhone.model+" "+ secondPhone.weight);
+        System.out.println(thirdPhone.number +" "+ thirdPhone.model +" "+ thirdPhone.weight);
+        firstPhone.receiveCall("John");
+        firstPhone.getNumber(123);
+        secondPhone.receiveCall("Clark");
+        secondPhone.getNumber(456);
+        thirdPhone.receiveCall("Samanta");
+        thirdPhone.getNumber(789);
     }
 }
