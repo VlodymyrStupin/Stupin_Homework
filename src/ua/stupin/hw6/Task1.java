@@ -40,10 +40,6 @@ public class Task1 {
         Phone firstPhone = new Phone(123, "S1", 1000);
         Phone secondPhone = new Phone(456, "S2");
         Phone thirdPhone = new Phone();
-        secondPhone.weight = 2000;
-        thirdPhone.number = 789;
-        thirdPhone.model = "S3";
-        thirdPhone.weight = 3000;
         System.out.println(firstPhone.number +" "+ firstPhone.model +" "+ firstPhone.weight);
         System.out.println(secondPhone.number +" "+ secondPhone.model+" "+ secondPhone.weight);
         System.out.println(thirdPhone.number +" "+ thirdPhone.model +" "+ thirdPhone.weight);
