@@ -2,7 +2,7 @@ package ua.stupin.ua.stupin.hw4;
 
 public class Task2and3 {
     public static void main(String[] args) {
-        int[] arrayThousand = new int[100];
+        int[] arrayThousand = new int[1000];
         int primeNumber = 0;
         int compositeNumber = 0;
         int notCompositeAndNotPrimeNumber = 0;
@@ -15,7 +15,7 @@ public class Task2and3 {
     private static int[] compositeAndPrimeNumber (int[] arrayThousand, int primeNumber,
                                                   int compositeNumber, int notCompositeAndNotPrimeNumber){
         for (int i = 0; i < arrayThousand.length; i++) {
-            arrayThousand[i] = ((int) (Math.random() * 10));
+            arrayThousand[i] = ((int) (Math.random() * 100));
             if (arrayThousand[i] == 0 || arrayThousand[i] == 1) {
                 notCompositeAndNotPrimeNumber += 1;
             } else if (arrayThousand[i] == 2 || arrayThousand[i] == 3 ||
