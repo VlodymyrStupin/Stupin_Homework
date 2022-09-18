@@ -6,14 +6,14 @@ public class Task1 {
         for (int i = 0; i < arrayFourHundred.length; i++) {
             arrayFourHundred[i] = (1 + (int) (Math.random() * 11));
         }
-        int arithmeticAverage = getArithmeticAverage(arrayFourHundred);
+        double arithmeticAverage = getArithmeticAverage(arrayFourHundred);
         System.out.println("Arithmetic average from arrays = " + arithmeticAverage);
         double geometricMean = getGeometricMean(arrayFourHundred);
         System.out.println("Geometric mean from arrays= " + geometricMean);
     }
-    private static int getArithmeticAverage(int[] arrayFourHundred) {
-        int sum = 0;
-        int dividedNumber;
+    private static double getArithmeticAverage(int[] arrayFourHundred) {
+        double sum = 0;
+        double dividedNumber;
         for (int i = 0; i < arrayFourHundred.length; i++) {
             sum += arrayFourHundred[i];
         }
