@@ -9,7 +9,7 @@ public class Task1 {
         double arithmeticAverage = getArithmeticAverage(arrayFourHundred);
         System.out.println("Arithmetic average from arrays = " + arithmeticAverage);
         double geometricMean = getGeometricMean(arrayFourHundred);
-        System.out.println("Geometric mean from arrays= " + geometricMean);
+        System.out.println("Geometric mean from arrays = " + geometricMean);
     }
     private static double getArithmeticAverage(int[] arrayFourHundred) {
         double sum = 0;
