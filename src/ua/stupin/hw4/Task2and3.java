@@ -12,8 +12,9 @@ public class Task2and3 {
         System.out.println("Composite number in array: " + compositeAndPrimeNumber[1]);
         System.out.println("Not a composite and not a prime number in array: " + compositeAndPrimeNumber[2]);
     }
-    private static int[] compositeAndPrimeNumber (int[] arrayThousand, int primeNumber,
-                                                  int compositeNumber, int notCompositeAndNotPrimeNumber){
+
+    private static int[] compositeAndPrimeNumber(int[] arrayThousand, int primeNumber,
+                                                 int compositeNumber, int notCompositeAndNotPrimeNumber) {
         for (int i = 0; i < arrayThousand.length; i++) {
             arrayThousand[i] = ((int) (Math.random() * 100));
             if (arrayThousand[i] == 0 || arrayThousand[i] == 1) {
@@ -29,6 +30,6 @@ public class Task2and3 {
             }
             System.out.println(arrayThousand[i]);
         }
-        return new int[] {primeNumber, compositeNumber, notCompositeAndNotPrimeNumber};
+        return new int[]{primeNumber, compositeNumber, notCompositeAndNotPrimeNumber};
     }
 }
