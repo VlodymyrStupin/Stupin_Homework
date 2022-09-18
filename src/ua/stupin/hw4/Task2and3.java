@@ -2,7 +2,7 @@ package ua.stupin.ua.stupin.hw4;
 
 public class Task2and3 {
     public static void main(String[] args) {
-        int[] arrayThousand = new int[10];
+        int[] arrayThousand = new int[1000];
         int primeNumber = 0;
         int compositeNumber = 0;
         int[] compositeAndPrimeNumber = compositeAndPrimeNumber(arrayThousand, primeNumber, compositeNumber);
