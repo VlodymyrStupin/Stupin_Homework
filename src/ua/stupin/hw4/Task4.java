@@ -1,17 +1,22 @@
 package ua.stupin.ua.stupin.hw4;
 
+import java.util.Arrays;
+
 public class Task4 {
     public static void main(String[] args) {
         int[] arrayTwoThousand = new int[2000];
         changeToNull(arrayTwoThousand);
+        System.out.println("Initial array: " + Arrays.toString(arrayTwoThousand));
     }
     private static void changeToNull(int[] arrayTwoThousand) {
-        for (int i = 0; i < arrayTwoThousand.length; i++) {
-            arrayTwoThousand[i] = (1 + (int) (Math.random() * 2000));
-            if (arrayTwoThousand[i] %2 == 0){
-                arrayTwoThousand[i] = 0;
+        int[] copyArrayTwoThousand = new int[arrayTwoThousand.length];
+        System.arraycopy(arrayTwoThousand, 0, copyArrayTwoThousand, 0, copyArrayTwoThousand.length);
+        for (int i = 0; i < copyArrayTwoThousand.length; i++) {
+            copyArrayTwoThousand[i] = (1 + (int) (Math.random() * 2000));
+            if (copyArrayTwoThousand[i] %2 == 0){
+                copyArrayTwoThousand[i] = 0;
             }
-            System.out.println(arrayTwoThousand[i]);
         }
+        System.out.println("Array with 0 when value is even: " + Arrays.toString(copyArrayTwoThousand));
     }
 }
