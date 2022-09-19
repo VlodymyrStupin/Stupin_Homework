@@ -15,15 +15,15 @@ public class Task2 {
     }
 
     public static boolean checkArrayByNonIncrease(int[] copyNoneOrderedArray) {
-        boolean ArrayIsOrderedByIncrease = false;
-        for(int i = 1; i < copyNoneOrderedArray.length; i++){
-            if (copyNoneOrderedArray[i-1] < copyNoneOrderedArray[i]){
-                ArrayIsOrderedByIncrease = false;
+        boolean arrayIsOrderedByIncrease = false;
+        for (int i = 1; i < copyNoneOrderedArray.length; i++) {
+            if (copyNoneOrderedArray[i - 1] < copyNoneOrderedArray[i]) {
+                arrayIsOrderedByIncrease = false;
                 break;
             } else {
-                ArrayIsOrderedByIncrease = true;
+                arrayIsOrderedByIncrease = true;
             }
         }
-    return ArrayIsOrderedByIncrease;
+        return arrayIsOrderedByIncrease;
     }
 }
