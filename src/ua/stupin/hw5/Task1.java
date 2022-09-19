@@ -12,28 +12,37 @@ import java.util.Arrays;
 //        *Передать массив в метод, заполнить данный массив
 public class Task1 {
     public static void main(String[] args) {
-        int[][] twoDimensionalArray = new int[5][5];
-        int[][] emptyTwoDimensionalArray = new int[twoDimensionalArray.length][twoDimensionalArray.length];
-        System.arraycopy(twoDimensionalArray, 0, emptyTwoDimensionalArray, 0, emptyTwoDimensionalArray.length);
-        fillTwoDimensionalArray(emptyTwoDimensionalArray);
+        int[][] twoDimensionalArray = new int[4][3];
+        fillTwoDimensionalArray(twoDimensionalArray);
+        printFilledArray(twoDimensionalArray);
     }
 
-    public static int[][] fillTwoDimensionalArray(int[][] emptyTwoDimensionalArray){
-        for (int i = 0; i < emptyTwoDimensionalArray.length; i++) {
-            for (int j = 0; j < emptyTwoDimensionalArray[i].length; j++) {
-                if(i % 2 == 0){
-                    emptyTwoDimensionalArray[i][j] = -j;
+    public static int[][] fillTwoDimensionalArray(int[][] twoDimensionalArray) {
+        int h = 1;
+        for (int i = 0; i < twoDimensionalArray.length; i++) {
+            for (int j = 0; j < twoDimensionalArray[i].length; j++) {
+                if (i == 0) {
+                    twoDimensionalArray[i][j] = h;
+                    h++;
+                } else if (i % 2 == 0) {
+                    twoDimensionalArray[i][j] = h;
+                    h++;
                 } else {
-                    emptyTwoDimensionalArray[i][j] = j;
+                    twoDimensionalArray[i][j] = -h;
+                    h++;
                 }
             }
         }
-        for (int i = 0; i < emptyTwoDimensionalArray.length; i++){
-            for (int j = 0; j < emptyTwoDimensionalArray.length; j++){
-                System.out.print(emptyTwoDimensionalArray[i][j] + " ");
+        return twoDimensionalArray;
+    }
+
+    public static int[][] printFilledArray(int[][] twoDimensionalArray) {
+        for (int i = 0; i < twoDimensionalArray.length; i++) {
+            for (int j = 0; j < twoDimensionalArray[i].length; j++) {
+                System.out.print(twoDimensionalArray[i][j] + " ");
             }
             System.out.println();
         }
-        return  emptyTwoDimensionalArray;
+        return twoDimensionalArray;
     }
 }
