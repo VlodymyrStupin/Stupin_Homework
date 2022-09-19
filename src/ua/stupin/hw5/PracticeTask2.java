@@ -1,10 +1,10 @@
-package ua.stupin.ua.stupin.practice2;
+package ua.stupin.ua.stupin.hw5;
 //        Известен рост каждого из 25 учеников класса. Рост мальчиков условно задан
 //        отрицательными числами. Определить средний рост мальчиков и средний рост девочек.
 
 import java.util.Arrays;
 
-public class Task2 {
+public class PracticeTask2 {
     public static void main(String[] args) {
         int[] highGirlsAndBoys = {100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100,
                      -200, -200, -200, -200, -200, -200, -200, -200, -200, -200, -200, -200};
