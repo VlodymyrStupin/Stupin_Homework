@@ -14,7 +14,13 @@ public class Task3 {
         fillTwoDimensionalArray(twoDimensionalArray);
         printFiledTwoDimensionalArray(twoDimensionalArray);
         System.out.println("Rotated array");
-        rotateArray(twoDimensionalArray);
+        for (int i = 0; i < rotateArray(twoDimensionalArray).length; i++) {
+            for (int j = 0; j < rotateArray(twoDimensionalArray).length; j++) {
+                System.out.print(rotateArray(twoDimensionalArray)[i][j] + " ");
+            }
+            System.out.println();
+        }
+
         System.out.println("Filled array after rotate");
         System.out.println(Arrays.deepToString(twoDimensionalArray));
     }
@@ -36,20 +42,18 @@ public class Task3 {
         return emptyTwoDimensionalArray;
     }
     public static int[][] rotateArray(int[][] twoDimensionalArray) {
-        int[][] copyTwoDimensionalArray = new int[twoDimensionalArray.length][twoDimensionalArray.length];
-        System.arraycopy(twoDimensionalArray, 0, copyTwoDimensionalArray, 0, copyTwoDimensionalArray.length);
-        int[][] newTwoDimensionalArray = new int[copyTwoDimensionalArray[0].length][copyTwoDimensionalArray.length];
-        for (int i = 0; i < copyTwoDimensionalArray.length; i++) {
-            for (int j = 0; j < copyTwoDimensionalArray[i].length; j++) {
-                newTwoDimensionalArray[j][i] = copyTwoDimensionalArray[i][j];
-            }
-        }
+        int[][] newTwoDimensionalArray = new int[twoDimensionalArray[0].length][twoDimensionalArray.length];
         for (int i = 0; i < newTwoDimensionalArray.length; i++) {
-            for (int j = 0; j < newTwoDimensionalArray.length; j++) {
-                System.out.print(newTwoDimensionalArray[i][j] + " ");
+            for (int j = 0; j < newTwoDimensionalArray[i].length; j++) {
+                newTwoDimensionalArray[j][i] = twoDimensionalArray[i][j];
             }
-            System.out.println();
         }
+//        for (int i = 0; i < newTwoDimensionalArray.length; i++) {
+//            for (int j = 0; j < newTwoDimensionalArray.length; j++) {
+//                System.out.print(newTwoDimensionalArray[i][j] + " ");
+//            }
+//            System.out.println();
+//        }
         return newTwoDimensionalArray;
     }
 }
