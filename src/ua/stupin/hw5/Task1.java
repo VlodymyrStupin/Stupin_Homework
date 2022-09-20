@@ -21,10 +21,7 @@ public class Task1 {
         int h = 1;
         for (int i = 0; i < twoDimensionalArray.length; i++) {
             for (int j = 0; j < twoDimensionalArray[i].length; j++) {
-                if (i == 0) {
-                    twoDimensionalArray[i][j] = h;
-                    h++;
-                } else if (i % 2 == 0) {
+                 if (i % 2 == 0) {
                     twoDimensionalArray[i][j] = h;
                     h++;
                 } else {
