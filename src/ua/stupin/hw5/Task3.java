@@ -20,7 +20,6 @@ public class Task3 {
             }
             System.out.println();
         }
-
         System.out.println("Filled array after rotate");
         System.out.println(Arrays.deepToString(twoDimensionalArray));
     }
@@ -48,12 +47,6 @@ public class Task3 {
                 newTwoDimensionalArray[j][i] = twoDimensionalArray[i][j];
             }
         }
-//        for (int i = 0; i < newTwoDimensionalArray.length; i++) {
-//            for (int j = 0; j < newTwoDimensionalArray.length; j++) {
-//                System.out.print(newTwoDimensionalArray[i][j] + " ");
-//            }
-//            System.out.println();
-//        }
         return newTwoDimensionalArray;
     }
 }
