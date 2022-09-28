@@ -1,4 +1,4 @@
-package ua.stupin.ua.stupin.hw6;
+package ua.stupin.hw6;
 
 public class Task2 {
 

@@ -1,4 +1,4 @@
-package ua.stupin.ua.stupin.hw6;
+package ua.stupin.hw6;
 //Класс Phone. а) Создайте класс Phone, который содержит переменные(поля) number, model и weight.
 //        б) Добавить конструктор в класс Phone, который принимает на вход три параметра для инициализации переменных класса
 //        - number, model и weight.

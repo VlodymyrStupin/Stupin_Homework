@@ -1,4 +1,4 @@
-package ua.stupin.ua.stupin.hw4;
+package ua.stupin.hw4;
 
 import java.util.Arrays;
 
