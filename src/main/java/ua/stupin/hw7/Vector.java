@@ -1,4 +1,4 @@
-package ua.stupin.ua.stupin.hw7;
+package ua.stupin.hw7;
 
 public class Vector {
 
