@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
-
 public class Hw5Task2Test {
     private Task2 task2;
 

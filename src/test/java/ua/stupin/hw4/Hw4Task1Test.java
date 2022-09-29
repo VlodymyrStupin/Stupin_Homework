@@ -17,7 +17,6 @@ public class Hw4Task1Test {
         // expectation true
         Assertions.assertEquals(10, task1.getArithmeticAverage(new int[]{10, 10, 10, 10, 10}));
     }
-
     @Test
     public void testArithmeticAverage2() {
         // expectation false

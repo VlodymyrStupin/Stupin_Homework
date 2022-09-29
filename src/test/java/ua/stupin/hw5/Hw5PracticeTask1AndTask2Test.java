@@ -14,7 +14,6 @@ public class Hw5PracticeTask1AndTask2Test {
         practiceTask1 = new PracticeTask1();
         practiceTask2 = new PracticeTask2();
     }
-
     @Test
     public void testSumProductPriceMoreThanThousand1() {
         // expectation true
