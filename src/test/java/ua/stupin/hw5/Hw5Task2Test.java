@@ -12,7 +12,6 @@ public class Hw5Task2Test {
     void setUp() {
         task2 = new Task2();
     }
-
     @Test
     public void testArrayIsOrderedByIncrease1() {
         // expectation true

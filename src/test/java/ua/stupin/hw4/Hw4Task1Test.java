@@ -28,7 +28,6 @@ public class Hw4Task1Test {
         // expectation true
         Assertions.assertEquals(5, task1.getGeometricMean(new int[]{5, 5, 5, 5, 5}));
     }
-
     @Test
     public void testGetGeometricMean2() {
         // expectation false

@@ -10,7 +10,7 @@ public class PracticeTask1 {
         System.out.println(sumProductPriceMoreThanThousand(productPrice));
         System.out.println(Arrays.toString(productPrice));
     }
-    private static int sumProductPriceMoreThanThousand (int[] productPrice){
+    public static int sumProductPriceMoreThanThousand (int[] productPrice){
         int sum = 0;
         for(int i = 0; i<productPrice.length; i++){
             if(productPrice[i] > 1000){
