@@ -11,7 +11,7 @@ public class Task1 {
         double geometricMean = getGeometricMean(arrayFourHundred);
         System.out.println("Geometric mean from arrays = " + geometricMean);
     }
-    private static double getArithmeticAverage(int[] arrayFourHundred) {
+    public static double getArithmeticAverage(int[] arrayFourHundred) {
         double sum = 0;
         double dividedNumber;
         for (int i = 0; i < arrayFourHundred.length; i++) {
@@ -20,7 +20,7 @@ public class Task1 {
         dividedNumber = sum / arrayFourHundred.length;
         return dividedNumber;
     }
-    private static double getGeometricMean(int[] arrayFourHundred) {
+    public static double getGeometricMean(int[] arrayFourHundred) {
         double multiplication = 1;
         for (int i = 0; i < arrayFourHundred.length; i++) {
             multiplication *= arrayFourHundred[i];
