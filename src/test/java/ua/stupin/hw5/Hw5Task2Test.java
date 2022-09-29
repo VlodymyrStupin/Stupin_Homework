@@ -18,7 +18,6 @@ public class Hw5Task2Test {
         // expectation true
         Assertions.assertEquals(true, task2.checkArrayByNonIncrease(new int[]{5, 4, 3, 2, 1}));
     }
-
     @Test
     public void testArrayIsOrderedByIncrease2() {
         // expectation false
