@@ -6,8 +6,13 @@ import org.junit.jupiter.api.Assertions;
 
 
 public class Hw5PracticeTask1AndTask2Test {
+<<<<<<< HEAD
     public PracticeTask1 practiceTask1;
     public PracticeTask2 practiceTask2;
+=======
+    private PracticeTask1 practiceTask1;
+    private PracticeTask2 practiceTask2;
+>>>>>>> 3dfa1e2 (hw 9 - tests)
 
     @BeforeEach
     void setUp() {
@@ -51,4 +56,7 @@ public class Hw5PracticeTask1AndTask2Test {
         Assertions.assertEquals(10, practiceTask2.mediumBoysHigh(new int[]{-10, 10, -10, -10, -21}));
     }
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3dfa1e2 (hw 9 - tests)
