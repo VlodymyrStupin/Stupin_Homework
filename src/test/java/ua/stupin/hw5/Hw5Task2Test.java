@@ -14,15 +14,24 @@ public class Hw5Task2Test {
     }
 
     @Test
-    public void testArrayIsOrderedByIncreaseTrue() {
+    public void testArrayIsOrderedByIncrease1() {
         // expectation true
-        Assertions.assertEquals(true, task2.checkArrayByNonIncrease(new int[]{5, 4, 3, 2, 2}));
+        Assertions.assertEquals(true, task2.checkArrayByNonIncrease(new int[]{5, 4, 3, 2, 1}));
     }
 
     @Test
-    public void testArrayIsOrderedByIncreaseFalse() {
+    public void testArrayIsOrderedByIncrease2() {
         // expectation false
-        Assertions.assertEquals(false, task2.checkArrayByNonIncrease(new int[]{5, 4, 3, 2, 3}));
+        Assertions.assertEquals(false, task2.checkArrayByNonIncrease(new int[]{6, 8, 4, 3, 2}));
     }
-
+    @Test
+    public void testArrayIsOrderedByIncrease3() {
+        // expectation true
+        Assertions.assertEquals(true, task2.checkArrayByNonIncrease(new int[]{74, 70, 52, 30, 31}));
+    }
+    @Test
+    public void testArrayIsOrderedByIncrease4() {
+        // expectation false
+        Assertions.assertEquals(false, task2.checkArrayByNonIncrease(new int[]{80, 32, 20, 10, 1}));
+    }
 }
