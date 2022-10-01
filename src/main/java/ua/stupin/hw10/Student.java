@@ -13,11 +13,11 @@ public class Student {
         this.averageMark = averageMark;
     }
 
-    public String getScholarship() {
+    public int getScholarship() {
         if (averageMark == 5) {
-            return "Scholarship for " + firstName + " " + lastName + " = 100 UAH";
+            return 100;
         }
-        return "Scholarship for " + firstName + " " + lastName + " = 80 UAH";
+        return 80;
     }
 }
 
@@ -30,11 +30,11 @@ class Aspirant extends Student {
     }
 
     @Override
-    public String getScholarship() {
+    public int getScholarship() {
         if (averageMark == 5) {
-            return "Scholarship for " + firstName + " " + lastName + " = 200 UAH";
+            return 200;
         }
-        return "Scholarship for " + firstName + " " + lastName + " = 180 UAH";
+        return 180;
     }
 
     public static void main(String[] args) {
