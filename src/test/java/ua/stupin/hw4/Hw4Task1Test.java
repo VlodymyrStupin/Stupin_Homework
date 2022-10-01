@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Assertions;
 
 public class Hw4Task1Test {
     private Task1 task1;
-
     @BeforeEach
     void setUp() {
         task1 = new Task1();

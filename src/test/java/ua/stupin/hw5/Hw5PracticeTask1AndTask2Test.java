@@ -19,6 +19,7 @@ public class Hw5PracticeTask1AndTask2Test {
         // expectation true
         Assertions.assertEquals(5005, practiceTask1.sumProductPriceMoreThanThousand(new int[]{1001, 1001, 1001, 1001, 1001}));
     }
+
     @Test
     public void testSumProductPriceMoreThanThousand2() {
         // expectation false
