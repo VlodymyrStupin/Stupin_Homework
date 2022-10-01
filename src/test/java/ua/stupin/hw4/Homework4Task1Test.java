@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
-public class Hw4Task1Test {
+public class Homework4Task1Test {
     private Task1 task1;
     @BeforeEach
     void setUp() {

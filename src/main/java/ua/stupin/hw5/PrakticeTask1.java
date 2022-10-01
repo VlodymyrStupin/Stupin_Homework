@@ -4,7 +4,7 @@ package ua.stupin.hw5;
 
 import java.util.Arrays;
 
-public class PracticeTask1 {
+public class PrakticeTask1 {
     public static void main(String[] args) {
         int[] productPrice = {995, 996, 997, 998, 999, 1000, 1001, 1002, 1003, 1004, 1005, 1006};
         System.out.println(sumProductPriceMoreThanThousand(productPrice));
