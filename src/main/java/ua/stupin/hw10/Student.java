@@ -37,8 +37,6 @@ class Aspirant extends Student {
         return "Scholarship for " + firstName + " " + lastName + " = 180 UAH";
     }
 
-    //    г) Создать массив типа Student, содержащий объекты класса Student и Aspirant.
-//    Вызвать метод getScholarship() для каждого элемента массива.
     public static void main(String[] args) {
         Student[] students = new Student[5];
         students[0] = new Student("Bob", "Marley", "A1", 5);
