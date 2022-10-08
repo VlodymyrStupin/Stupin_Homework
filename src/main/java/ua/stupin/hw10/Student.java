@@ -1,12 +1,14 @@
 package ua.stupin.hw10;
 
-public class Student {
-    String firstName;
-    String lastName;
-    String group;
-    double averageMark;
+import java.util.Objects;
 
-    Student(String firstName, String lastName, String group, double averageMark) {
+public class Student {
+    public String firstName;
+    public String lastName;
+    public String group;
+    public double averageMark;
+
+    public Student(String firstName, String lastName, String group, double averageMark) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.group = group;
@@ -19,36 +21,15 @@ public class Student {
         }
         return 80;
     }
-}
 
-class Aspirant extends Student {
-    String scienceWork;
-
-    Aspirant(String firstName, String lastName, String group, double averageMark, String scienceWork) {
-        super(firstName, lastName, group, averageMark);
-        this.scienceWork = scienceWork;
+    public boolean equals(Student student) {
+        return (this.firstName.equals(student.firstName) &&
+                this.lastName.equals(student.lastName) &&
+                this.group.equals(student.group) &&
+                this.averageMark == student.averageMark);
     }
 
-    @Override
-    public int getScholarship() {
-        if (averageMark == 5) {
-            return 200;
-        }
-        return 180;
-    }
-
-    public static void main(String[] args) {
-        Student[] students = new Student[5];
-        students[0] = new Student("Bob", "Marley", "A1", 5);
-        students[1] = new Student("John", "Lennon", "A2", 4.38);
-        students[2] = new Student("Bob", "Dylan", "A2", 2.5);
-        students[3] = new Aspirant("Bob", "Dylan", "A2", 2.5, "Bob's science work");
-        students[4] = new Aspirant("Freddie", "Mercury", "A1", 5, "Freddie's science work");
-        for (int i = 0; i < students.length; i++) {
-            System.out.println(students[i].getScholarship());
-        }
+    public int hashCode(){
+        return Objects.hash(firstName, lastName, group, averageMark);
     }
 }
-
-
-
