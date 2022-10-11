@@ -50,15 +50,5 @@ public class Truck extends Car implements Recovery{
         }
         return "Cargo after unload " + cargo;
     }
-
-    @Override
-    public double refuel(double quantityOfFuel) {
-        if ((fuelLevel + quantityOfFuel) > sizeOfFuelTank) {
-            System.out.println("Quantity to refuel is wrong, must be less then size of fuel tank");
-        } else {
-            fuelLevel = fuelLevel + quantityOfFuel;
-        }
-        return fuelLevel;
-    }
 }
 

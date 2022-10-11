@@ -42,15 +42,5 @@ public class PassengerCar extends Car implements Recovery {
 
 
     }
-
-    @Override
-    public double refuel(double quantityOfFuel) {
-        if ((fuelLevel + quantityOfFuel) > sizeOfFuelTank) {
-            System.out.println("Quantity to refuel is wrong, must be less then size of fuel tank");
-        } else {
-            fuelLevel = fuelLevel + quantityOfFuel;
-        }
-        return fuelLevel;
-    }
 }
 
