@@ -5,8 +5,8 @@ package ua.stupin.hw12;
 * которое будет ловить все три вида исключений.
  */
 public class Task3 {
-    static class FirstUserExceptions extends Exception {
-        public FirstUserExceptions(String message) {
+    static class FirstUserException extends Exception {
+        public FirstUserException(String message) {
 
             super(message);
         }
@@ -17,26 +17,31 @@ public class Task3 {
             super(message);
         }
     }
+    static class ThirdUserExceptions extends Exception {
+        public ThirdUserExceptions(String message) {
+
+            super(message);
+        }
+    }
     private static String doAction(String word)
-            throws NullPointerException, FirstUserExceptions, SecondUserExceptions  {
-        if (word.equals(null)) {
-            throw new NullPointerException("Word can't be a curse word");
+            throws FirstUserException, SecondUserExceptions, ThirdUserExceptions  {
+        if (word.equals("a")) {
+            throw new FirstUserException("Word can't be a one letter");
         }
         if (word.equals(" ")) {
             throw new SecondUserExceptions("Word can't be empty space");
         }
         if (word.equals("")) {
-            throw new SecondUserExceptions("Word can't contain nothing");
+            throw new ThirdUserExceptions("Word can't contain nothing");
         }
         return "The word is " + word;
     }
 
     public static void main(String[] args) {
         try {
-            doAction(null);
-        } catch (NullPointerException | FirstUserExceptions | SecondUserExceptions exception){
-            exception.printStackTrace();
-            exception.getMessage();
+            doAction("a");
+        } catch (FirstUserException | SecondUserExceptions | ThirdUserExceptions exception){
+            System.out.println(exception.getMessage());
         }
     }
 }

@@ -15,17 +15,17 @@ public class Task1 {
     }
 
     private static String doAction(String word) throws UserInputException {
-        if (word.equals(null)) {
-            throw new UserInputException("Word can't be null");
+        if (word.equals("home")) {
+            throw new UserInputException("Word can't be home");
         }
         return "The word is " + word;
     }
 
     public static void main(String[] args) {
         try {
-            doAction(null);
+            doAction("home");
         } catch (UserInputException exception) {
-            exception.printStackTrace();
+            System.out.println(exception.getMessage());
         } finally {
             System.out.println("Exception is checked");
         }
