@@ -7,11 +7,11 @@ import org.junit.jupiter.api.Assertions;
 
 
 public class Hw5PracticeTask1AndTask2Test {
-    private PrakticeTask1 practiceTask1;
+    private PracticeTask1 practiceTask1;
     private PracticeTask2 practiceTask2;
     @BeforeEach
     void setUp() {
-        practiceTask1 = new PrakticeTask1();
+        practiceTask1 = new PracticeTask1();
         practiceTask2 = new PracticeTask2();
     }
     @Test
