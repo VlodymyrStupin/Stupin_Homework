@@ -2,13 +2,13 @@ package ua.stupin.hw10;
 
 import java.util.Objects;
 
-public class Student {
+public class Studdent {
     public String firstName;
     public String lastName;
     public String group;
     public double averageMark;
 
-    public Student(String firstName, String lastName, String group, double averageMark) {
+    public Studdent(String firstName, String lastName, String group, double averageMark) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.group = group;
@@ -22,11 +22,11 @@ public class Student {
         return 80;
     }
 
-    public boolean equals(Student student) {
-        return (this.firstName.equals(student.firstName) &&
-                this.lastName.equals(student.lastName) &&
-                this.group.equals(student.group) &&
-                this.averageMark == student.averageMark);
+    public boolean equals(Studdent studdent) {
+        return (this.firstName.equals(studdent.firstName) &&
+                this.lastName.equals(studdent.lastName) &&
+                this.group.equals(studdent.group) &&
+                this.averageMark == studdent.averageMark);
     }
 
     public int hashCode(){
