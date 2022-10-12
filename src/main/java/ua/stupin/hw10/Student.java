@@ -19,23 +19,6 @@ public class Student {
         }
         return 80;
     }
-}
-
-class Aspirant extends Student {
-    String scienceWork;
-
-    Aspirant(String firstName, String lastName, String group, double averageMark, String scienceWork) {
-        super(firstName, lastName, group, averageMark);
-        this.scienceWork = scienceWork;
-    }
-
-    @Override
-    public int getScholarship() {
-        if (averageMark == 5) {
-            return 200;
-        }
-        return 180;
-    }
 
     public static void main(String[] args) {
         Student[] students = new Student[5];
