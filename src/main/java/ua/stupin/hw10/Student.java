@@ -1,5 +1,7 @@
 package ua.stupin.hw10;
 
+import java.util.Objects;
+
 public class Student {
     String firstName;
     String lastName;
@@ -19,17 +21,16 @@ public class Student {
         }
         return 80;
     }
+    public boolean equals(ua.stupin.hw10.Aspirant aspirant) {
+        return (this.firstName.equals(aspirant.firstName) &&
+                this.lastName.equals(aspirant.lastName) &&
+                this.group.equals(aspirant.group) &&
+                this.averageMark == aspirant.averageMark);
+    }
 
-    public static void main(String[] args) {
-        Student[] students = new Student[5];
-        students[0] = new Student("Bob", "Marley", "A1", 5);
-        students[1] = new Student("John", "Lennon", "A2", 4.38);
-        students[2] = new Student("Bob", "Dylan", "A2", 2.5);
-        students[3] = new Aspirant("Bob", "Dylan", "A2", 2.5, "Bob's science work");
-        students[4] = new Aspirant("Freddie", "Mercury", "A1", 5, "Freddie's science work");
-        for (int i = 0; i < students.length; i++) {
-            System.out.println(students[i].getScholarship());
-        }
+
+    public int hashCode() {
+        return Objects.hash(firstName, lastName, group, averageMark);
     }
 }
 
