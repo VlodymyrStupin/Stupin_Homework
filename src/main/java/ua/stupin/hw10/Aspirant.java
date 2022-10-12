@@ -3,33 +3,31 @@ package ua.stupin.hw10;
 import java.util.Objects;
 
 public class Aspirant extends Student {
-    public String firstName;
-    public String lastName;
-    public String group;
-    public double averageMark;
+    public String scienceWork;
 
-    public Aspirant(String firstName, String lastName, String group, double averageMark) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.group = group;
-        this.averageMark = averageMark;
+    public Aspirant(String firstName, String lastName, String group, double averageMark, String scienceWork) {
+        super(firstName, lastName, group, averageMark);
+        this.scienceWork = scienceWork;
     }
 
+    @Override
     public int getScholarship() {
         if (averageMark == 5) {
-            return 100;
+            return 200;
         }
-        return 80;
+        return 180;
     }
 
-    public boolean equals(Aspirant student) {
-        return (this.firstName.equals(student.firstName) &&
-                this.lastName.equals(student.lastName) &&
-                this.group.equals(student.group) &&
-                this.averageMark == student.averageMark);
+    public boolean equals(Aspirant aspirant) {
+        return (this.firstName.equals(aspirant.firstName) &&
+                this.lastName.equals(aspirant.lastName) &&
+                this.group.equals(aspirant.group) &&
+                this.averageMark == aspirant.averageMark) &&
+                this.scienceWork.equals(aspirant.scienceWork);
     }
 
-    public int hashCode(){
-        return Objects.hash(firstName, lastName, group, averageMark);
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, lastName, group, averageMark, scienceWork);
     }
 }
