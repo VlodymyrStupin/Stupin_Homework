@@ -2,7 +2,7 @@ package ua.stupin.hw10;
 
 import java.util.Objects;
 
-public class Aspirant extends Studdent {
+public class Aspirant extends Student {
     public String scienceWork;
 
     public Aspirant(String firstName, String lastName, String group, double averageMark, String scienceWork) {
