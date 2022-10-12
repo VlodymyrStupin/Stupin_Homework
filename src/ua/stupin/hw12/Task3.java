@@ -11,28 +11,28 @@ public class Task3 {
             super(message);
         }
     }
-    static class SecondUserExceptions extends Exception {
-        public SecondUserExceptions(String message) {
+    static class SecondUserException extends Exception {
+        public SecondUserException(String message) {
 
             super(message);
         }
     }
-    static class ThirdUserExceptions extends Exception {
-        public ThirdUserExceptions(String message) {
+    static class ThirdUserException extends Exception {
+        public ThirdUserException(String message) {
 
             super(message);
         }
     }
     private static String doAction(String word)
-            throws FirstUserException, SecondUserExceptions, ThirdUserExceptions  {
+            throws FirstUserException, SecondUserException, ThirdUserException {
         if (word.equals("a")) {
             throw new FirstUserException("Word can't be a one letter");
         }
         if (word.equals(" ")) {
-            throw new SecondUserExceptions("Word can't be empty space");
+            throw new SecondUserException("Word can't be empty space");
         }
         if (word.equals("")) {
-            throw new ThirdUserExceptions("Word can't contain nothing");
+            throw new ThirdUserException("Word can't contain nothing");
         }
         return "The word is " + word;
     }
@@ -40,7 +40,7 @@ public class Task3 {
     public static void main(String[] args) {
         try {
             doAction("a");
-        } catch (FirstUserException | SecondUserExceptions | ThirdUserExceptions exception){
+        } catch (FirstUserException | SecondUserException | ThirdUserException exception){
             System.out.println(exception.getMessage());
         }
     }
