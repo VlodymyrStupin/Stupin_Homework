@@ -22,6 +22,7 @@ public class Student {
         return 80;
     }
 
+
     public boolean equals(Student student) {
         return (this.firstName.equals(student.firstName) &&
                 this.lastName.equals(student.lastName) &&
@@ -33,3 +34,17 @@ public class Student {
         return Objects.hash(firstName, lastName, group, averageMark);
     }
 }
+
+
+    public boolean equals(Student student) {
+        return (this.firstName.equals(student.firstName) &&
+                this.lastName.equals(student.lastName) &&
+                this.group.equals(student.group) &&
+                this.averageMark == student.averageMark);
+    }
+
+    public int hashCode(){
+        return Objects.hash(firstName, lastName, group, averageMark);
+    }
+}
+
