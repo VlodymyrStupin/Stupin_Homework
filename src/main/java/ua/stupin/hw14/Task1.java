@@ -15,7 +15,7 @@ public class Task1 {
     public static void main(String[] args) {
         MySet<Integer> arrayInteger = new MySet(Integer.class, 10);
         for (int i = 0; i < arrayInteger.array.length; i++) {
-            arrayInteger.set(i, i);
+            arrayInteger.add(i, i);
         }
         System.out.println(arrayInteger.get(5));
         System.out.println(arrayInteger.add(10, 5));
