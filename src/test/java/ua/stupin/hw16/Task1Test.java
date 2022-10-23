@@ -22,16 +22,16 @@ class Task1Test {
 
     @Test
     public void fromListToMapTest1() {
-        Map<String, Integer> newMap = new HashMap<>();
-        newMap.put("home", 4);
-        newMap.put("chair", 5);
-        Assertions.assertEquals(newMap, task1.fromListToMap(List.of("home", "chair")));
+        Map<String, Integer> testNewMap = new HashMap<>();
+        testNewMap.put("home", 4);
+        testNewMap.put("chair", 5);
+        Assertions.assertEquals(testNewMap, task1.fromListToMap(List.of("home", "chair")));
     }
     @Test
     public void fromListToMapTest2() {
-        Map<String, Integer> newMap = new HashMap<>();
-        newMap.put("hotel", 5);
-        newMap.put("Barbados", 8);
-        Assertions.assertEquals(newMap, task1.fromListToMap(List.of("Barbados", "hotel")));
+        Map<String, Integer> testNewMap = new HashMap<>();
+        testNewMap.put("hotel", 5);
+        testNewMap.put("Barbados", 8);
+        Assertions.assertEquals(testNewMap, task1.fromListToMap(List.of("Barbados", "hotel")));
     }
 }

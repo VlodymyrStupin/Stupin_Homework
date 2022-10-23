@@ -24,22 +24,22 @@ class Task2Test {
     @Test
     void fromListToMap1() {
         Map<Integer, List<String>> newMap = new HashMap<>();
-        List<String> newList1 = List.of("home", "girl", "hood");
-        List<String> newList2 = List.of("chair", "chain");
-        newMap.put(4, newList1);
-        newMap.put(5, newList2);
+        List<String> firstTestListFourLettersWords = List.of("home", "girl", "hood");
+        List<String> secondTestListFiveLettersWords = List.of("chair", "chain");
+        newMap.put(4, firstTestListFourLettersWords);
+        newMap.put(5, secondTestListFiveLettersWords);
         Assertions.assertEquals(newMap, task2.fromListToMap(List.of("home", "chair", "girl", "hood", "chain")));
     }
 
     @Test
     void fromListToMap2() {
         Map<Integer, List<String>> newMap = new HashMap<>();
-        List<String> newList1 = List.of("open", "beer", "bear");
-        List<String> newList2 = List.of("ice", "eye", "pig", "bee", "dog", "cat");
-        List<String> newList3 = List.of("chariot", "knights", "Roggers");
-        newMap.put(4, newList1);
-        newMap.put(3, newList2);
-        newMap.put(7, newList3);
+        List<String> firstTestListFourLettersWords = List.of("open", "beer", "bear");
+        List<String> secondTestListThreeLettersWords = List.of("ice", "eye", "pig", "bee", "dog", "cat");
+        List<String> thirdTestListSevenLettersWords = List.of("chariot", "knights", "Roggers");
+        newMap.put(4, firstTestListFourLettersWords);
+        newMap.put(3, secondTestListThreeLettersWords);
+        newMap.put(7, thirdTestListSevenLettersWords);
         Assertions.assertEquals(newMap, task2.fromListToMap(List.of("open", "beer", "bear"
                 , "ice", "eye", "pig", "bee", "dog", "cat", "chariot", "knights", "Roggers")));
     }
