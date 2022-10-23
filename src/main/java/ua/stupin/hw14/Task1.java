@@ -1,6 +1,7 @@
 package ua.stupin.hw14;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 /*
 Создать обертку массива без дубликатов
@@ -14,13 +15,12 @@ MySet
 public class Task1 {
     public static void main(String[] args) {
         MySet<Integer> arrayInteger = new MySet(Integer.class, 10);
-        for (int i = 0; i < arrayInteger.array.length; i++) {
+        for (int i = 0; i < arrayInteger.length; i++) {
             arrayInteger.add(i, i);
         }
         System.out.println(arrayInteger.get(5));
-        System.out.println(arrayInteger.add(10, 5));
-        System.out.println(arrayInteger.toString());
-
+        String printedArray = arrayInteger.toString();
+        System.out.println(printedArray);
     }
 }
 
@@ -29,25 +29,18 @@ class MySet<T> {
     public int length;
 
     public MySet(Class<T> type, int length) {
+        this.length = length;
         this.array = (T[]) java.lang.reflect.Array.newInstance(type, length);
     }
 
-    void set(int i, T element) {
-        array[i] = element;
-    }
-
-    public boolean add(int length, T element) {
-        boolean checkLength = false;
-        boolean checkElementExist = false;
-        if (array.length == 10) {
-            checkLength = true;
-        }
-        for (int i = 0; i < array.length; i++) {
-            if (array[i].equals(element)){
-                checkElementExist = true;
+    public void add (int positionInArray, T element) {
+        for (int i = 0; i < length - 1; i++) {
+            for (int j = 1; i < length; i++) {
+                if (array[j] != element && Objects.isNull(array[i])) {
+                    array[positionInArray] = element;
+                }
             }
         }
-        return checkLength && checkElementExist;
     }
 
     public T get(int index) {
