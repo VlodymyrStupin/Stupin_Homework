@@ -1,11 +1,6 @@
 package ua.stupin.hw18;
 
-import ua.stupin.hw15.Task3;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /*
 Спроектировать класс Box который содержит клас Item, size. Item должен содержать поле name и cost
@@ -18,141 +13,98 @@ f. Вывести цены в консоль
  */
 public class Task5 {
     public static void main(String[] args) {
-        Box box = new Box();
-        List<Box.Item> itemList = new ArrayList<>();
-        itemList.add(0, new Box.Item("pen", 14));
-        itemList.add(1, new Box.Item("woodenHorse", 27));
-        List<Box.Item> itemList1 = new ArrayList<>();
-        itemList.add(0, new Box.Item("doll", 64));
-        itemList.add(1, new Box.Item("pencil", 15));
-//        Box.Item item = box.createItem("pen", 15);
-//        Box.Item item1 = box.createItem("woodenHorse", 27);
-//        Box.Item item2 = box.createItem("chair", 97);
-//        Box.Item item3 = box.createItem("clock", 88);
-//        Box.Item item4 = box.createItem("window", 155);
-
-        Map<Integer, List<Box.Item>> newBoxes = new HashMap<>();
-        newBoxes.put(6, itemList);
-        newBoxes.put(8, itemList1);
-        System.out.println(newBoxes.get(8).get(1).getName());
-
-//        newBoxes.put(new Box(), item1);
-
-        Box.Item item5 = new Box.Item("doll", 64);
-        Box.Item item6 = new Box.Item("pencil", 15);
-        Box.Item item7 = new Box.Item("telephone", 27);
-        Box.Item item8 = new Box.Item("rabbit", 69);
-        Box.Item item9 = new Box.Item("rope", 77);
-        Box.Item item10 = new Box.Item("watermelon", 4);
-        Box.Item item11 = new Box.Item("table", 34);
-        Box.Item item12 = new Box.Item("book", 11);
-        Box.Item item13 = new Box.Item("aid", 66);
-        Box.Item item14 = new Box.Item("socket", 2);
-        Box.Item item15 = new Box.Item("woodenHouse", 27);
-        Box.Item item16 = new Box.Item("woodenRabbit", 27);
-        Box.Item item17 = new Box.Item("cigar", 44);
-        Box.Item item18 = new Box.Item("paper", 13);
-        Box.Item item19 = new Box.Item("copybook", 3);
-
-//
-//        newBoxes.get(4).pu
-//        newBoxes.get(0).setItem(itemsForBox);
-//        newBoxes.get(1).setSize(5);
-//        newBoxes.get(1).setItem(itemsForBox1);
-//        newBoxes.get(2).setSize(6);
-//        newBoxes.get(2).setItem(itemsForBox2);
-//        newBoxes.get(3).setSize(7);
-//        newBoxes.get(3).setItem(itemsForBox3);
-//        newBoxes.get(4).setSize(8);
-//        newBoxes.get(4).setItem(itemsForBox4);
-//        newBoxes.get(5).setSize(9);
-//        newBoxes.get(5).setItem(itemsForBox5);
-//        newBoxes.get(6).setSize(10);
-//        newBoxes.get(6).setItem(itemsForBox6);
-//        newBoxes.get(7).setSize(8);
-//        newBoxes.get(7).setItem(itemsForBox7);
-//        newBoxes.get(8).setSize(5);
-//        newBoxes.get(8).setItem(itemsForBox8);
-//        newBoxes.get(9).setSize(6);
-//        newBoxes.get(9).setItem(itemsForBox9);
-        List<Map.Entry<Integer, List<Box.Item>>> sortedBox = newBoxes.entrySet().stream()
-                .filter(c -> c.getKey()>8)
-                .sorted((o1, o2) -> Integer.compare(o1.getValue().get(0).getCost(), o2.getValue().get(1).getCost()))
+        Item item1 = new Item("pen", 14);
+        Item item2 = new Item("woodenHorse", 27);
+        Item item3 = new Item("doll", 64);
+        Item item4 = new Item("pencil", 15);
+        Item item5 = new Item("telephone", 29);
+        Item item6 = new Item("rabbit", 69);
+        Item item7 = new Item("rope", 77);
+        Item item8 = new Item("table", 34);
+        Item item9 = new Item("book", 11);
+        Item item10 = new Item("firstAid", 66);
+        Item item11 = new Item("socket", 2);
+        Item item12 = new Item("woodenHouse", 28);
+        Item item13 = new Item("woodenRabbit", 900);
+        Item item14 = new Item("cigar", 44);
+        Item item15 = new Item("paper", 13);
+        Item item16 = new Item("copybook", 3);
+        Item item17 = new Item("watermelon", 4);
+        Item item18 = new Item("chair", 97);
+        Item item19 = new Item("clock", 88);
+        Item item20 = new Item("window", 155);
+        List<Item> items1 = Arrays.asList(item1, item2);
+        List<Item> items2 = Arrays.asList(item3, item4);
+        List<Item> items3 = Arrays.asList(item5, item6);
+        List<Item> items4 = Arrays.asList(item7, item8);
+        List<Item> items5 = Arrays.asList(item9, item10);
+        List<Item> items6 = Arrays.asList(item11, item12);
+        List<Item> items7 = Arrays.asList(item13, item14);
+        List<Item> items8 = Arrays.asList(item15, item16);
+        List<Item> items9 = Arrays.asList(item17, item18);
+        List<Item> items10 = Arrays.asList(item19, item20);
+        Box box1 = new Box(2, items1);
+        Box box2 = new Box(3, items2);
+        Box box3 = new Box(4, items3);
+        Box box4 = new Box(5, items4);
+        Box box5 = new Box(6, items5);
+        Box box6 = new Box(7, items6);
+        Box box7 = new Box(8, items7);
+        Box box8 = new Box(9, items8);
+        Box box9 = new Box(10, items9);
+        Box box10 = new Box(11, items10);
+        List<Box> boxes = Arrays.asList(box1, box2, box3, box4, box5, box6, box7, box8, box9, box10);
+        List<Item> sortedBoxes = boxes.stream()
+                .filter(Box::isSuitable)
+                .map(Box -> Box.items.get(args.length))
+                .sorted(Comparator.comparing(Item::getCost))
                 .toList();
-        System.out.println(sortedBox);
+        System.out.println(sortedBoxes);
     }
-
 }
 
 class Box {
+    int size;
+    List<Item> items;
 
-    public Box() {
-
+    public Box(int size, List<Item> items) {
+        this.size = size;
+        this.items = items;
     }
 
     @Override
     public String toString() {
         return "Box{" +
                 "size=" + size +
+                ", items=" + items +
                 '}';
     }
 
-    static class Item {
-        public String name;
-        public int cost;
+    public boolean isSuitable() {
+        return this.size >= 4;
+    }
+}
 
-        public Item(String name, int cost) {
-            this.name = name;
-            this.cost = cost;
-        }
+class Item {
+    public String name;
+    public int cost;
 
-        public void createItem(String name, int cost) {
-            name = this.name;
-            cost = this.cost;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public int getCost() {
-            return cost;
-        }
-
-        public void setCost(int cost) {
-            this.cost = cost;
-        }
-
-        @Override
-        public String toString() {
-            return "Item{" +
-                    "name='" + name + '\'' +
-                    ", cost=" + cost +
-                    '}';
-        }
+    public Item(String name, int cost) {
+        this.name = name;
+        this.cost = cost;
     }
 
-
-    int size;
-
-
-    public void setSize(int size) {
-        this.size = size;
+    public int getCost() {
+        return cost;
     }
 
-    public int getSize() {
-        return size;
+    @Override
+    public String toString() {
+        return "Item{" +
+                "name='" + name + '\'' +
+                ", cost=" + cost +
+                '}';
     }
-
-    public boolean isSuitable(int minSizeLimit) {
-        return minSizeLimit >= 5;
-    }
-
-
 }
 
 
