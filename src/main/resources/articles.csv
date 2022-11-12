@@ -1,0 +1,12 @@
+type,series,model,diagonal,screen type,country,price
+Telephone,S-10,Samsung,none,QLED,none,400
+Telephone,S-6,Samsung,none,QLED,none,200
+Telephone,13,Iphone,none,OLED,none,600
+Telephone,3230,Nokia,none,LED,none,50
+Telephone,P30,Huawei,none,LED,none,150
+Television,RTI-14,none,25,LED,China,1500
+Television,SMI-1,none,30,OLED,Taiwan,1620
+Television,DCI-11,none,25,OLED,India,2000
+Television,OGC-114,none,25,QLED,UA,1000
+Television,SZR-13456,none,25,AMOLED,,1950
+Television,SZR-13,none,25,AMOLED,Canada,2200
