@@ -17,6 +17,11 @@ public class Task2 {
                 .limit(7)
                 .filter(number -> number >= 0)
                 .toList();
+        getIntSummaryStatistics(filteredList);
+
+    }
+
+    private static void getIntSummaryStatistics(List<Integer> filteredList) {
         IntSummaryStatistics intSummaryStatistics = new IntSummaryStatistics();
         for (Integer integer : filteredList) {
             intSummaryStatistics.accept(integer);
@@ -33,6 +38,5 @@ public class Task2 {
                 + intSummaryStatistics.getMin());
         System.out.println("The string representation is");
         System.out.println(intSummaryStatistics.toString());
-
     }
 }

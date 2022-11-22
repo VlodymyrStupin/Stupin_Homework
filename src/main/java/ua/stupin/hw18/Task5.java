@@ -54,12 +54,17 @@ public class Task5 {
         Box box9 = new Box(10, items9);
         Box box10 = new Box(11, items10);
         List<Box> boxes = Arrays.asList(box1, box2, box3, box4, box5, box6, box7, box8, box9, box10);
+        List<Item> sortedBoxes = getSortedBoxes(args, boxes);
+        System.out.println(sortedBoxes);
+    }
+
+    private static List<Item> getSortedBoxes(String[] args, List<Box> boxes) {
         List<Item> sortedBoxes = boxes.stream()
                 .filter(Box::isSuitable)
                 .map(Box -> Box.items.get(args.length))
                 .sorted(Comparator.comparing(Item::getCost))
                 .toList();
-        System.out.println(sortedBoxes);
+        return sortedBoxes;
     }
 }
 

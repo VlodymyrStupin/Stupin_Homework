@@ -14,8 +14,13 @@ public class Task4 {
         listOfNumbers.add(345);
         listOfNumbers.add(0);
         listOfNumbers.add(2);
+        int filteredList = getFilteredList(listOfNumbers);
+        System.out.println(filteredList);
+    }
+
+    private static int getFilteredList(List<Integer> listOfNumbers) {
         int filteredList = listOfNumbers.stream()
                 .reduce(0, Integer::min);
-        System.out.println(filteredList);
+        return filteredList;
     }
 }

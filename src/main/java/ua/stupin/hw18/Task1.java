@@ -16,10 +16,15 @@ public class Task1 {
         stringList.add("double");
         stringList.add("particle");
         stringList.add("dream");
+        List<String> stringListToStream = getStringList(stringList);
+        System.out.println(stringList);
+        System.out.println(stringListToStream);
+    }
+
+    private static List<String> getStringList(List<String> stringList) {
         List<String> stringListToStream = stringList.stream()
                 .sorted(Comparator.naturalOrder())
                 .toList();
-        System.out.println(stringList);
-        System.out.println(stringListToStream);
+        return stringListToStream;
     }
 }

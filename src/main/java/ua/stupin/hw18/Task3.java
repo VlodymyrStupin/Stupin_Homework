@@ -22,10 +22,21 @@ public class Task3 {
         dateListInString.add("2020/09/14");
         dateListInString.add("2022/08/30");
         DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-        List<LocalDate> dateListInStringToDateList  = dateListInString.stream()
+        List<LocalDate> dateList = getDateListInStringToDateList(dateListInString, format);
+        System.out.println("Is present year 2022: " + checkForDate2022(dateList));
+        System.out.println(dateListInString);
+        System.out.println(dateList);
+    }
+
+    private static List<LocalDate> getDateListInStringToDateList(List<String> dateListInString, DateTimeFormatter format) {
+        List<LocalDate> dateListInStringToDateList = dateListInString.stream()
                 .map(date -> LocalDate.parse(date, format))
                 .toList();
-        System.out.println(dateListInString);
-        System.out.println(dateListInStringToDateList);
+        return dateListInStringToDateList;
+    }
+
+    private static boolean checkForDate2022(List<LocalDate> dateList) {
+        return dateList.stream()
+                .anyMatch(it -> it.getYear() == 2022);
     }
 }
