@@ -9,4 +9,4 @@ WHERE country = 'Russia';
 SELECT firstName 
 FROM customer
 GROUP BY firstName;
-SELECT * FROM customer ORDER BY dateOfBirdth DESC;
+SELECT * FROM customer ORDER BY dateOfBirdth DESC ;
