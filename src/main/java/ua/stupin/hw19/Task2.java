@@ -3,6 +3,7 @@ package ua.stupin.hw19;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+
 import java.io.FileReader;
 
 /*
@@ -18,21 +19,22 @@ import java.io.FileReader;
 }
  */
 public class Task2 {
-    static class Box{
+
+    static class Box {
         String from;
         String material;
-        JSONObject maxLiftingCapacity;
-        JSONObject cargo;
         String deliveryDate;
+        Cargo cargo;
+        MaxLiftingCapacity maxLiftingCapacity;
 
         @Override
         public String toString() {
             return "Box{" +
                     "from='" + from + '\'' +
                     ", material='" + material + '\'' +
-                    ", max-lifting-capacity=" + maxLiftingCapacity +
-                    ", cargo=" + cargo +
-                    ", delivery-date='" + deliveryDate + '\'' +
+                    ", deliveryDate='" + deliveryDate + '\'' +
+                    ", " + cargo +
+                    ", " + maxLiftingCapacity +
                     '}';
         }
     }
@@ -41,20 +43,31 @@ public class Task2 {
         JSONParser parser = new JSONParser();
         try {
             Object obj = parser.parse(new FileReader("D:\\Java study\\Homework_Stupin\\Homework\\src\\main\\resources\\box.json"));
-            JSONObject jsonObject = (JSONObject)obj;
+            JSONObject jsonObject = (JSONObject) obj;
             Box box = new Box();
-            box.from = (String)jsonObject.get("from");
-            box.material = (String)jsonObject.get("material");
-            box.maxLiftingCapacity = (JSONObject) jsonObject.get("max-lifting-capacity");
-            box.cargo = (JSONObject) jsonObject.get("cargo");
+            box.from = (String) jsonObject.get("from");
+            box.material = (String) jsonObject.get("material");
+            box.maxLiftingCapacity =  parseMaxLiftingCapacityObject(jsonObject);
+            box.cargo = parseCargoObject(jsonObject);
             box.deliveryDate = (String) jsonObject.get("delivery-date");
             System.out.println(box);
-            System.out.println(box.maxLiftingCapacity.get("unit"));
-            System.out.println(box.maxLiftingCapacity.get("value"));
-            System.out.println(box.cargo.get("name"));
-            System.out.println(box.cargo.get("class"));
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static Cargo parseCargoObject(JSONObject jsonCargo){
+        Cargo cargo = new Cargo();
+        JSONObject cargoObject = (JSONObject) jsonCargo.get("cargo");
+        cargo.clazz = (String) cargoObject.get("class");
+        cargo.name = (String) cargoObject.get("name");
+        return cargo;
+    }
+    public static MaxLiftingCapacity parseMaxLiftingCapacityObject(JSONObject jsonMaxLiftingCapacity){
+        MaxLiftingCapacity maxLiftingCapacity = new MaxLiftingCapacity();
+        JSONObject maxLiftingCapacityObject = (JSONObject) jsonMaxLiftingCapacity.get("max-lifting-capacity");
+        maxLiftingCapacity.unit = (String) maxLiftingCapacityObject.get("unit");
+        maxLiftingCapacity.value = (long) maxLiftingCapacityObject.get("value");
+        return maxLiftingCapacity;
     }
 }

@@ -10,15 +10,16 @@ import java.util.Scanner;
 
 public class Task1 {
     public static void main(String[] args) throws IOException, IllegalStateException {
-        String fileName = "D:\\Java study\\Homework_Stupin\\Homework\\src\\main\\resources\\test.csv";
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
-            Scanner scanner = new Scanner(System.in);
+        String fileName = "src\\main\\resources\\test.csv";
+        Scanner scanner = null;
+        BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true));
+        try (writer) {
+             scanner = new Scanner(System.in);
             while (true) {
                 String value = scanner.next();
                 if (value.equals("end")){
-                    scanner.close();
-                    writer.close();
 
+                    break;
                 }  else if (!value.equals("next")){
                     writer.write(value);
                     writer.write(',');
@@ -30,6 +31,9 @@ public class Task1 {
             System.out.println(e.getMessage());
         } catch (IllegalStateException e){
             e.getMessage();
+        } finally {
+            scanner.close();
+            writer.close();
         }
     }
 
