@@ -1,10 +1,10 @@
-package ua.stupin.secondModuleWork;
+package ua.stupin.module.second;
 
 import org.apache.commons.collections4.map.LinkedMap;
-import ua.stupin.secondModuleWork.classModels.Customer;
-import ua.stupin.secondModuleWork.classModels.Invoice;
-import ua.stupin.secondModuleWork.services.PersonService;
-import ua.stupin.secondModuleWork.services.ShopService;
+import ua.stupin.module.second.classModels.Customer;
+import ua.stupin.module.second.classModels.Invoice;
+import ua.stupin.module.second.services.PersonService;
+import ua.stupin.module.second.services.ShopService;
 
 import java.io.IOException;
 import java.util.*;
@@ -12,8 +12,8 @@ import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        String fileNameForRead = "D:\\Java study\\Homework_Stupin\\Homework\\src\\main\\resources\\articles.csv";
-        String fileNameForWrite = "D:\\Java study\\Homework_Stupin\\Homework\\src\\main\\resources\\invoices.csv";
+        String fileNameForRead = "src\\main\\resources\\articles.csv";
+        String fileNameForWrite = "src\\main\\resources\\invoices.csv";
         int limitOfCost = (int) (Math.random() * 10000);
         ShopService shopService = new ShopService();
         PersonService personService = new PersonService();

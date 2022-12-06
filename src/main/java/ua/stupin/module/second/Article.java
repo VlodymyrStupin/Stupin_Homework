@@ -1,4 +1,4 @@
-package ua.stupin.secondModuleWork;
+package ua.stupin.module.second;
 
 import com.opencsv.bean.CsvBindByName;
 

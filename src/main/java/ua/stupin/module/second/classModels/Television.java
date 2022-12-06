@@ -1,4 +1,4 @@
-package ua.stupin.secondModuleWork.classModels;
+package ua.stupin.module.second.classModels;
 
 
 public class Television {

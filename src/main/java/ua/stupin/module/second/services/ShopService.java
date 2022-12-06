@@ -1,9 +1,9 @@
-package ua.stupin.secondModuleWork.services;
+package ua.stupin.module.second.services;
 
 import com.opencsv.bean.CsvToBeanBuilder;
-import ua.stupin.secondModuleWork.Article;
-import ua.stupin.secondModuleWork.classModels.Customer;
-import ua.stupin.secondModuleWork.classModels.Invoice;
+import ua.stupin.module.second.Article;
+import ua.stupin.module.second.classModels.Customer;
+import ua.stupin.module.second.classModels.Invoice;
 
 import java.io.*;
 import java.time.LocalTime;

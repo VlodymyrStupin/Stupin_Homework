@@ -1,6 +1,6 @@
-package ua.stupin.secondModuleWork.classModels;
+package ua.stupin.module.second.classModels;
 
-import ua.stupin.secondModuleWork.Article;
+import ua.stupin.module.second.Article;
 
 import java.util.List;
 

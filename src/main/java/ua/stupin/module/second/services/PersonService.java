@@ -1,6 +1,6 @@
-package ua.stupin.secondModuleWork.services;
+package ua.stupin.module.second.services;
 
-import ua.stupin.secondModuleWork.classModels.Customer;
+import ua.stupin.module.second.classModels.Customer;
 
 public class PersonService {
     public Customer randomCustomer() {
