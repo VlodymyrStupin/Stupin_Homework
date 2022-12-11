@@ -1,0 +1,7 @@
+ua\stupin\Main.class
+utils\PropertiesCache.class
+ua\stupin\mongodb\MongoProductRepository.class
+ua\stupin\entity\Product.class
+ua\stupin\mongodb\MongoDbClient.class
+ua\stupin\mongodb\MongoRepository.class
+utils\PropertiesCache$LazyHolder.class

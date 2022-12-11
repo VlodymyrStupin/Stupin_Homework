@@ -1,0 +1,27 @@
+version: "3.9"
+services:
+  mongo-db:
+    networks:
+      - internal
+    build:
+      context: ./docker
+      dockerfile: mongo_server
+    volumes:
+  #      - ./mongo-volume:/data/db
+      - mongodata:/data/db
+    ports:
+      - "27017:27017"
+  application:
+    build:
+      context: ./docker
+      dockerfile: application
+    depends_on:
+      - mongo-db
+    networks:
+      - internal
+networks:
+  internal:
+    driver: bridge
+volumes:
+  mongodata:
+    driver: local
