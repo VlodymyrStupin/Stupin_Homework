@@ -9,7 +9,7 @@
         <class>ua.stupin.shop.entity.Order</class>
         <class>ua.stupin.shop.entity.Goods</class>
         <properties>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.MariaDB53Dialect"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MariaDBDialect"/>
             <property name="hibernate.connection.driver_class" value="org.mariadb.jdbc.Driver"/>
             <property name="hibernate.connection.url" value="jdbc:mariadb://127.0.0.1:3306/hw26"/>
             <property name="hibernate.connection.username" value="root"/>

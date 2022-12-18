@@ -10,13 +10,9 @@ import ua.stupin.shop.repository.hibernate.ClientRepositoryImpl;
 import ua.stupin.shop.repository.hibernate.GoodsRepositoryImpl;
 import ua.stupin.shop.repository.hibernate.OrderRepositoryImpl;
 
-
 import java.math.BigDecimal;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 public class HibernateRunner {
@@ -33,15 +29,18 @@ public class HibernateRunner {
         orderRepository.getAll().forEach(System.out::println);
         System.out.println("Orders with discount:");
         orderRepository.getOrdersWithDiscount().forEach(System.out::println);
-        int amount = 2;
+        int amount = 1;
         System.out.println("Clients with amount of orders greater:");
-        System.out.println(clientRepository.getClientsWithAmountOfOrdersGreater(amount));
+        clientRepository.getClientsWithAmountOfOrdersGreater(amount).forEach(System.out::println);
+//        ордери з однаковим ІД клієнта
         int age = 20;
-        clientRepository.removeAllClientsYoungerThan(age);
+//        clientRepository.removeAllClientsYoungerThan(age);
+//        не видаляє, сannot delete or update a parent row: a foreign key constraint fails
+
     }
 
     private static Client createAndSaveClient() {
-        Client client = new Client("Tester", "Testerov", LocalDate.of(2001, 11, 29));
+        Client client = new Client("Testerik", "Testerov", LocalDate.of(2020, 11, 29));
         clientRepository.save(client);
         List<Client> clientList = clientRepository.getAll();
         client = clientList.get(clientList.size() - 1);
@@ -56,7 +55,7 @@ public class HibernateRunner {
     }
 
     private static Order createAndSaveOrder(Client client, Goods goods) {
-        Order order = new Order(LocalDateTime.now(), goods.getPrice(), null);
+        Order order = new Order(LocalDateTime.now(), goods.getPrice(), 0);
         order.setGoods(List.of(goods));
         order.setClient(client);
         orderRepository.save(order);

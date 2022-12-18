@@ -7,11 +7,12 @@ import ua.stupin.shop.config.HibernateUtils;
 import ua.stupin.shop.entity.Client;
 import ua.stupin.shop.repository.ClientRepository;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class ClientRepositoryImpl extends AbstractHibernateRepository<Client> implements ClientRepository {
+    private final String getClientsWithAmountOfOrdersGreater = "SELECT * FROM clients LEFT JOIN orders on clients.client_id " +
+            "= orders.client_id GROUP BY clients.client_id HAVING COUNT(*) > ?";
     protected void init() {
         aClass = Client.class;
     }
@@ -23,12 +24,10 @@ public class ClientRepositoryImpl extends AbstractHibernateRepository<Client> im
         List<Client> clientList = new ArrayList<>();
         session = HibernateUtils.getFactory().openSession();
         session.beginTransaction();
-        Query query = session.createSQLQuery("SELECT clients.client_id, clients.first_name, clients.last_name, " +
-                "clients.date_of_birth FROM clients LEFT OUTER JOIN orders ON clients.client_id " +
-                "= orders.client_id GROUP BY clients.client_id HAVING COUNT(*) > :amount").addEntity(aClass);
-        clientList = (List<Client> ) query.setParameter("amount", amount).list();
+        Query query = session.createSQLQuery(getClientsWithAmountOfOrdersGreater + amount).addEntity(aClass);
+        query.setParameter(1, amount);
+        clientList = query.list();
         session.getTransaction().commit();
-
         return clientList;
     }
 
@@ -36,10 +35,16 @@ public class ClientRepositoryImpl extends AbstractHibernateRepository<Client> im
         Session session = null;
         session = HibernateUtils.getFactory().openSession();
         session.beginTransaction();
-        Query query = session.createSQLQuery("DELETE FROM clients WHERE (SELECT YEAR (CURDATE()) - " +
-                "YEAR (clients.date_of_birth)) < :age ").addEntity(aClass);
+        Query dropForeignKeyQuery = session.createSQLQuery("ALTER TABLE orders DROP FOREIGN KEY FKaoqjqu5li3448xo657dvp6teq");
+        Query query = session.createQuery("DELETE clients WHERE (YEAR (NOW()) - YEAR(date_of_birth) < :age)");
         query.setParameter("age", age);
+//        dropForeignKeyQuery.executeUpdate();
+        int result = query.executeUpdate();
         session.getTransaction().commit();
-        return age;
+        return result;
+    }
+    public List<Client> getClientsWithSumOfOrdersGreaterAndAmountOfGoodsInOrderGreater(int amountOfOrders, int goodsLimit){
+        List<Client> clientList = new ArrayList<>();
+        return clientList;
     }
 }

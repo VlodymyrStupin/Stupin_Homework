@@ -37,8 +37,12 @@ public class JdbcRunner {
         int age = 2;
 //        Не видаляє бо каскадне видалення не працює
 //        clientRepository.removeAllClientsYoungerThan(age);
+        int amountOfOrders = 10000;
+        int goodsLimit = 0;
+        System.out.println("Clients with sum of orders greater and amount of goods in order greater:");
+        clientRepository.getClientsWithSumOfOrdersGreaterAndAmountOfGoodsInOrderGreater(amountOfOrders, goodsLimit)
+                .forEach(System.out::println);
     }
-
     private static Client createAndSaveClient() {
         Client client = new Client(UUID.randomUUID().toString(), "Tester", "Testerov2", LocalDate.of(2022, 11, 29), Collections.emptyList());
         clientRepository.save(client);

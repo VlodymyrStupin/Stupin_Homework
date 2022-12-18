@@ -21,6 +21,20 @@ public class ClientRepositoryImpl extends AbstractJDBCRepository implements Clie
             "SELECT * FROM clients LEFT OUTER JOIN orders on clients.client_id " +
                     "= orders.client_id GROUP BY clients.client_id HAVING COUNT(*) > ";
     private final String removeAllClientsYoungerThan = "DELETE FROM clients WHERE (YEAR (NOW()) - YEAR(date_of_birth)< ?)";
+    private final String getClientsWithSumOfOrdersGreaterAndAmountOfGoodsInOrderGreater = "SELECT clients.client_id,  clients.date_of_birth, clients.first_name, clients.last_name, orders.order_id\n" +
+            "FROM clients \n" +
+            "INNER JOIN orders \n" +
+            "ON clients.client_id = orders.client_id \n" +
+            "GROUP BY clients.client_id \n" +
+            "HAVING orders.order_id IN\n" +
+            "(SELECT orders.order_id\n" +
+            "FROM orders\n" +
+            "INNER JOIN orders_goods\n" +
+            "ON orders.order_id = orders_goods.order_id\n" +
+            "GROUP BY orders.order_id\n" +
+            "HAVING COUNT(orders_goods.goods_id) > ?)\n" +
+            "AND\n" +
+            "SUM(orders.total_price) > ?;";
 
     @SneakyThrows
     @Override
@@ -91,11 +105,25 @@ public class ClientRepositoryImpl extends AbstractJDBCRepository implements Clie
     @SneakyThrows
     @Override
     public int removeAllClientsYoungerThan(int age) {
+        Connection connection = createConnection();
+        PreparedStatement statement = connection.prepareStatement(removeAllClientsYoungerThan);
+        statement.setInt(1, age);
+        return statement.executeUpdate(removeAllClientsYoungerThan);
+    }
+
+    @SneakyThrows
+    @Override
+    public List<Client> getClientsWithSumOfOrdersGreaterAndAmountOfGoodsInOrderGreater(int amountOfOrders, int goodsLimit) {
+        List<Client> clientList = new ArrayList<>();
         try (Connection connection = createConnection();
-             PreparedStatement statement = connection.prepareStatement(removeAllClientsYoungerThan)) {
-            statement.setString(1, Integer.toString(age));
-            statement.execute();
+             PreparedStatement statement = connection.prepareStatement(getClientsWithSumOfOrdersGreaterAndAmountOfGoodsInOrderGreater)) {
+            statement.setInt(1, goodsLimit);
+            statement.setInt(2, amountOfOrders);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                clientList.add(extractClientFromResultSet(resultSet));
+            }
+            return clientList;
         }
-        return age;
     }
 }

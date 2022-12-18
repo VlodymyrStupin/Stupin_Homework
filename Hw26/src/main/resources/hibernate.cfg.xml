@@ -5,17 +5,19 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">org.mariadb.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mariadb://127.0.0.1:3306/hw24</property>
+        <property name="hibernate.connection.url">jdbc:mariadb://127.0.0.1:3306/hw26</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">123456</property>
         <property name="hibernate.connection.pool_size">10</property>
-        <property name="dialect">org.hibernate.dialect.MariaDB106Dialect</property>
+        <property name="dialect">org.hibernate.dialect.MariaDBDialect</property>
         <property name="show_sql">false</property>
         <property name="hbm2ddl.auto">update</property>
         <property name="hibernate.connection.autocommit">false</property>
+        <property name="current_session_context_class">thread</property>
 
-        <mapping class ="ua.stupin.shop.entity.Client"/>
-        <mapping class ="ua.stupin.shop.entity.Order"/>
-        <mapping class ="ua.stupin.shop.entity.Goods"/>
+
+        <mapping class="ua.stupin.shop.entity.Client"/>
+        <mapping class="ua.stupin.shop.entity.Goods"/>
+        <mapping class="ua.stupin.shop.entity.Order"/>
     </session-factory>
 </hibernate-configuration>

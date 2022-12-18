@@ -12,8 +12,6 @@ import ua.stupin.shop.entity.Order;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
-
-
 import static javax.persistence.Persistence.createEntityManagerFactory;
 
 public class HibernateUtils {
