@@ -1,64 +1,82 @@
 package ua.stupin.hw24;
 
 import org.hibernate.Session;
+
 import org.hibernate.query.Query;
 
-import javax.swing.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Session session = null;
-        int deviceID = 6;
+        int deviceID = 2;
+        int deviceIDForUpdate = 4;
         int factoryId = 1;
         int deviceIdForDelete = 2;
-        createTableDeviceAndFactoryAndFillThem(session);
-        System.out.println("Information about device:");
-        System.out.println(getInformationAboutDevice(deviceID));
-        System.out.println(getInformationAboutDevice(deviceID).get(0).factory);
-        changePriceInDevice(session, deviceID);
-        deleteDevice(session, deviceIdForDelete);
-        getAllDevicesCreatedInFactory(session, factoryId);
-        getQuantityOfTypeAndSumOfDevicesPriceFromEachFactory( session, factoryId);
+        createTableDeviceAndFactoryAndFillThem();
+//        Information about device
+        System.out.println(getDeviceById(deviceID));
+        updateDevice(deviceIDForUpdate, getDeviceById(deviceID).get(0));
+        deleteDevice(deviceIdForDelete);
+        getAllDevicesCreatedInFactory(factoryId);
+        getQuantityOfTypeAndSumOfDevicesPriceFromEachFactory(factoryId);
     }
 
-private static List<Object[]>  getQuantityOfTypeAndSumOfDevicesPriceFromEachFactory(Session session, int factoryId) {
-    Query query = null;
-    List<Object[]> list = null;
-    try {
-        session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
-        query = session.createQuery("select factory.name, count(device), sum(device.price) " +
-                "from Device device INNER JOIN device.factory factory group by device.factoryID");
-        list = query.list();
-        System.out.println("device: factory name//" + "quantity devices//" + "sum of prices)");
-        for (Object[] arr : list) {
-            System.out.println(Arrays.toString(arr));
+    private static List<Object[]> getQuantityOfTypeAndSumOfDevicesPriceFromEachFactory(int factoryId) {
+        List<Object[]> list = null;
+        Session session = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            Query query = session.createQuery("select factory.name, count(device), sum(device.price) " +
+                    "from Device device INNER JOIN device.factory factory group by device.factoryID");
+            list = query.list();
+            System.out.println("device: factory name//" + "quantity devices//" + "sum of prices)");
+            for (Object[] arr : list) {
+                System.out.println(Arrays.toString(arr));
+            }
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
         }
-        session.getTransaction().commit();
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(null, e.getMessage(), "Fault I/O", JOptionPane.ERROR_MESSAGE);
-    } finally {
-        if (session != null && session.isOpen()) {
-            session.close();
-        }
+        return list;
     }
-    return list;
-}
-    private static Query changePriceInDevice(Session session, int deviceID) {
+
+    private static Query updateDevice(int deviceID, Device device) {
+        Session session = null;
         Query query = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            query = session.createQuery("UPDATE Device SET price =:price WHERE id =:id");
-            query.setParameter("price", 100000);
+            query = session.createQuery("UPDATE Device SET " +
+                    "type =:type, " +
+                    "modelName =:modelName, " +
+                    "price =:price, " +
+                    "creationDate =:creationDate, " +
+                    "description =:description, " +
+                    "availabilityInWarehouse =:availabilityInWarehouse, " +
+                    "factoryID =:factoryID " +
+                    "WHERE id =:id");
+            query.setParameter("type", device.getType());
+            query.setParameter("modelName", device.getModelName());
+            query.setParameter("price", device.getPrice());
+            query.setParameter("creationDate", device.getCreationDate());
+            query.setParameter("description", device.getDescription());
+            query.setParameter("availabilityInWarehouse", device.isAvailabilityInWarehouse());
+            query.setParameter("factoryID", device.getFactoryID());
             query.setParameter("id", deviceID);
             query.executeUpdate();
             session.getTransaction().commit();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Fault I/O", JOptionPane.ERROR_MESSAGE);
+            System.out.println(e.getMessage());
         } finally {
             if (session != null && session.isOpen()) {
                 session.close();
@@ -67,9 +85,10 @@ private static List<Object[]>  getQuantityOfTypeAndSumOfDevicesPriceFromEachFact
         return query;
     }
 
-    private static List<Object[]> getAllDevicesCreatedInFactory(Session session, int factoryId) {
+    private static List<Object[]> getAllDevicesCreatedInFactory(int factoryId) {
         Query query = null;
         List<Object[]> list = null;
+        Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
@@ -86,7 +105,7 @@ private static List<Object[]>  getQuantityOfTypeAndSumOfDevicesPriceFromEachFact
             }
             session.getTransaction().commit();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Fault I/O", JOptionPane.ERROR_MESSAGE);
+            System.out.println(e.getMessage());
         } finally {
             if (session != null && session.isOpen()) {
                 session.close();
@@ -95,8 +114,9 @@ private static List<Object[]>  getQuantityOfTypeAndSumOfDevicesPriceFromEachFact
         return list;
     }
 
-    private static Query deleteDevice(Session session, int deviceID) {
+    private static Query deleteDevice(int deviceID) {
         Query query = null;
+        Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
@@ -105,7 +125,7 @@ private static List<Object[]>  getQuantityOfTypeAndSumOfDevicesPriceFromEachFact
             query.executeUpdate();
             session.getTransaction().commit();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Fault I/O", JOptionPane.ERROR_MESSAGE);
+            System.out.println(e.getMessage());
         } finally {
             if (session != null && session.isOpen()) {
                 session.close();
@@ -114,7 +134,8 @@ private static List<Object[]>  getQuantityOfTypeAndSumOfDevicesPriceFromEachFact
         return query;
     }
 
-    private static void createTableDeviceAndFactoryAndFillThem(Session session) {
+    private static void createTableDeviceAndFactoryAndFillThem() {
+        Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
@@ -126,7 +147,7 @@ private static List<Object[]>  getQuantityOfTypeAndSumOfDevicesPriceFromEachFact
             }
             session.getTransaction().commit();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Fault I/O", JOptionPane.ERROR_MESSAGE);
+            System.out.println(e.getMessage());
         } finally {
             if (session != null && session.isOpen()) {
                 session.close();
@@ -134,7 +155,7 @@ private static List<Object[]>  getQuantityOfTypeAndSumOfDevicesPriceFromEachFact
         }
     }
 
-    private static List<Device> getInformationAboutDevice(int id) {
+    private static List<Device> getDeviceById(int id) {
         Session session = null;
         List<Device> result = null;
         try {
@@ -142,10 +163,9 @@ private static List<Object[]>  getQuantityOfTypeAndSumOfDevicesPriceFromEachFact
             session.beginTransaction();
             Query query = session.createSQLQuery("SELECT * FROM device where id like :id").addEntity(Device.class);
             result = query.setParameter("id", id).list();
-
             session.getTransaction().commit();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Fault I/O", JOptionPane.ERROR_MESSAGE);
+            System.out.println(e.getMessage());
         } finally {
             if (session != null && session.isOpen()) {
                 session.close();
@@ -154,7 +174,7 @@ private static List<Object[]>  getQuantityOfTypeAndSumOfDevicesPriceFromEachFact
         return result;
     }
 
-    public static Date StringToDate(String s) {
+    public static Date stringToDate(String s) {
         Date result = null;
         try {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -179,7 +199,7 @@ private static List<Object[]>  getQuantityOfTypeAndSumOfDevicesPriceFromEachFact
         device1.setType("phone");
         device1.setModelName("S1");
         device1.setPrice(200);
-        device1.setCreationDate(StringToDate("2022-07-01"));
+        device1.setCreationDate(stringToDate("2022-07-01"));
         device1.setDescription("no text");
         device1.setAvailabilityInWarehouse(true);
         device1.setFactoryID(1);
@@ -187,7 +207,7 @@ private static List<Object[]>  getQuantityOfTypeAndSumOfDevicesPriceFromEachFact
         device2.setType("phone");
         device2.setModelName("S2");
         device2.setPrice(400);
-        device2.setCreationDate(StringToDate("2022-07-02"));
+        device2.setCreationDate(stringToDate("2022-07-02"));
         device2.setDescription("no text");
         device2.setAvailabilityInWarehouse(true);
         device2.setFactoryID(1);
@@ -195,7 +215,7 @@ private static List<Object[]>  getQuantityOfTypeAndSumOfDevicesPriceFromEachFact
         device3.setType("notebook");
         device3.setModelName("a550");
         device3.setPrice(1200);
-        device3.setCreationDate(StringToDate("2022-07-02"));
+        device3.setCreationDate(stringToDate("2022-07-02"));
         device3.setDescription("no text");
         device3.setAvailabilityInWarehouse(true);
         device3.setFactoryID(1);
@@ -203,7 +223,7 @@ private static List<Object[]>  getQuantityOfTypeAndSumOfDevicesPriceFromEachFact
         device4.setType("chair");
         device4.setModelName("red wood");
         device4.setPrice(75);
-        device4.setCreationDate(StringToDate("2021-04-19"));
+        device4.setCreationDate(stringToDate("2021-04-19"));
         device4.setDescription("no text");
         device4.setAvailabilityInWarehouse(true);
         device4.setFactoryID(2);
@@ -211,7 +231,7 @@ private static List<Object[]>  getQuantityOfTypeAndSumOfDevicesPriceFromEachFact
         device5.setType("bookcase");
         device5.setModelName("white wood");
         device5.setPrice(90);
-        device5.setCreationDate(StringToDate("2000-01-02"));
+        device5.setCreationDate(stringToDate("2000-01-02"));
         device5.setDescription("no text");
         device5.setAvailabilityInWarehouse(false);
         device5.setFactoryID(2);
@@ -219,7 +239,7 @@ private static List<Object[]>  getQuantityOfTypeAndSumOfDevicesPriceFromEachFact
         device6.setType("engine");
         device6.setModelName("XV-40");
         device6.setPrice(15000);
-        device6.setCreationDate(StringToDate("2022-11-24"));
+        device6.setCreationDate(stringToDate("2022-11-24"));
         device6.setDescription("no text");
         device6.setAvailabilityInWarehouse(true);
         device6.setFactoryID(3);
@@ -227,7 +247,7 @@ private static List<Object[]>  getQuantityOfTypeAndSumOfDevicesPriceFromEachFact
         device7.setType("shirt");
         device7.setModelName("cotton");
         device7.setPrice(10);
-        device7.setCreationDate(StringToDate("2022-09-11"));
+        device7.setCreationDate(stringToDate("2022-09-11"));
         device7.setDescription("no text");
         device7.setAvailabilityInWarehouse(true);
         device7.setFactoryID(4);
@@ -235,7 +255,7 @@ private static List<Object[]>  getQuantityOfTypeAndSumOfDevicesPriceFromEachFact
         device8.setType("pants");
         device8.setModelName("jeans");
         device8.setPrice(50);
-        device8.setCreationDate(StringToDate("2022-09-11"));
+        device8.setCreationDate(stringToDate("2022-09-11"));
         device8.setDescription("no text");
         device8.setAvailabilityInWarehouse(true);
         device8.setFactoryID(4);
@@ -243,7 +263,7 @@ private static List<Object[]>  getQuantityOfTypeAndSumOfDevicesPriceFromEachFact
         device9.setType("dress");
         device9.setModelName("georgette");
         device9.setPrice(100);
-        device9.setCreationDate(StringToDate("2022-09-11"));
+        device9.setCreationDate(stringToDate("2022-09-11"));
         device9.setDescription("no text");
         device9.setAvailabilityInWarehouse(true);
         device9.setFactoryID(4);
@@ -251,7 +271,7 @@ private static List<Object[]>  getQuantityOfTypeAndSumOfDevicesPriceFromEachFact
         device10.setType("sweater");
         device10.setModelName("polyester");
         device10.setPrice(20);
-        device10.setCreationDate(StringToDate("2022-01-12"));
+        device10.setCreationDate(stringToDate("2022-01-12"));
         device10.setDescription("no text");
         device10.setAvailabilityInWarehouse(false);
         device10.setFactoryID(4);

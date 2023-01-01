@@ -1,19 +1,17 @@
 package ua.stupin.hw24;
 
-import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import javax.persistence.Table;
 import java.util.Set;
 
 @Entity
 @Table(name = "factory")
 public class Factory {
-    Set<Device> device;
+    private Set<Device> device;
     int iD;
-    String name;
-    String country;
+    private String name;
+    private String country;
 
     public Factory() {
 
