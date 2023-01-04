@@ -4,23 +4,18 @@ import lombok.SneakyThrows;
 import ua.stupin.shop.entity.Client;
 import ua.stupin.shop.repository.ClientRepository;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ClientRepositoryImpl extends AbstractJDBCRepository implements ClientRepository {
-    private final String createUserSQL = "INSERT INTO clients (client_id, first_name, last_name, date_of_birth) VALUES (?,?,?,?)";
+    private final String insertIntoTable = "INSERT INTO clients (client_id, first_name, last_name, date_of_birth) VALUES (?,?,?,?)";
     private final String selectAllClientsSQL = "SELECT * FROM clients";
     private final String selectClientByIdSQL = "SELECT * FROM clients WHERE client_id = ?";
     private final String getClientsWithAmountOfOrdersGreater =
             "SELECT * FROM clients LEFT OUTER JOIN orders on clients.client_id " +
                     "= orders.client_id GROUP BY clients.client_id HAVING COUNT(*) > ";
-    private final String removeAllClientsYoungerThan = "DELETE FROM clients WHERE (YEAR (NOW()) - YEAR(date_of_birth)< ?)";
+    private final String removeAllClientsYoungerThan = "DELETE FROM clients WHERE ((YEAR (NOW()) - YEAR(date_of_birth))< ?)";
     private final String getClientsWithSumOfOrdersGreaterAndAmountOfGoodsInOrderGreater = "SELECT clients.client_id,  clients.date_of_birth, clients.first_name, clients.last_name, orders.order_id\n" +
             "FROM clients \n" +
             "INNER JOIN orders \n" +
@@ -69,7 +64,7 @@ public class ClientRepositoryImpl extends AbstractJDBCRepository implements Clie
     @Override
     public void save(Client client) {
         try (Connection connection = createConnection();
-             PreparedStatement statement = connection.prepareStatement(createUserSQL)) {
+             PreparedStatement statement = connection.prepareStatement(insertIntoTable)) {
             statement.setString(1, client.getId());
             statement.setString(2, client.getFirstName());
             statement.setString(3, client.getLastName());
@@ -77,7 +72,6 @@ public class ClientRepositoryImpl extends AbstractJDBCRepository implements Clie
             statement.execute();
         }
     }
-
 
     private Client extractClientFromResultSet(ResultSet resultSet) throws SQLException {
         Client client = new Client();
@@ -104,11 +98,14 @@ public class ClientRepositoryImpl extends AbstractJDBCRepository implements Clie
 
     @SneakyThrows
     @Override
-    public int removeAllClientsYoungerThan(int age) {
-        Connection connection = createConnection();
-        PreparedStatement statement = connection.prepareStatement(removeAllClientsYoungerThan);
-        statement.setInt(1, age);
-        return statement.executeUpdate(removeAllClientsYoungerThan);
+    public void removeAllClientsYoungerThan(int age) {
+        try (Connection connection = createConnection();
+             PreparedStatement statement = connection.prepareStatement(removeAllClientsYoungerThan)) {
+            statement.setInt(1, age);
+            statement.executeUpdate();
+            connection.close();
+            statement.close();
+        }
     }
 
     @SneakyThrows

@@ -32,26 +32,24 @@ public class HibernateRunner {
         int amount = 1;
         System.out.println("Clients with amount of orders greater:");
         clientRepository.getClientsWithAmountOfOrdersGreater(amount).forEach(System.out::println);
-//        ордери з однаковим ІД клієнта
         int age = 20;
-//        clientRepository.removeAllClientsYoungerThan(age);
-//        не видаляє, сannot delete or update a parent row: a foreign key constraint fails
-
+        clientRepository.removeAllClientsYoungerThan(age);
+        int amountOfOrders = 10000;
+        int goodsLimit = 0;
+        clientRepository.getClientsWithSumOfOrdersGreaterAndAmountOfGoodsInOrderGreater(amountOfOrders, goodsLimit)
+                .forEach(System.out::println);
     }
 
     private static Client createAndSaveClient() {
         Client client = new Client("Testerik", "Testerov", LocalDate.of(2020, 11, 29));
         clientRepository.save(client);
-        List<Client> clientList = clientRepository.getAll();
-        client = clientList.get(clientList.size() - 1);
         return client;
     }
 
     private static Goods createAndSaveGoods() {
         Goods goods = new Goods(BigDecimal.valueOf(2000), "Test goods", "Test category");
         goodsRepository.save(goods);
-        List<Goods> goodsList = goodsRepository.getAll();
-        return goodsList.get(goodsList.size() - 1);
+        return goods;
     }
 
     private static Order createAndSaveOrder(Client client, Goods goods) {
@@ -59,7 +57,6 @@ public class HibernateRunner {
         order.setGoods(List.of(goods));
         order.setClient(client);
         orderRepository.save(order);
-        List<Order> orderList = orderRepository.getAll();
-        return orderList.get(orderList.size() - 1);
+        return order;
     }
 }
