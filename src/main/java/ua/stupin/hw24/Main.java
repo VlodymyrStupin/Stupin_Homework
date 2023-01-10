@@ -50,7 +50,7 @@ public class Main {
         return list;
     }
 
-    private static Query updateDevice(int deviceID, Device device) {
+    private static Query updateDevice(int id, Device device) {
         Session session = null;
         Query query = null;
         try {
@@ -72,7 +72,7 @@ public class Main {
             query.setParameter("description", device.getDescription());
             query.setParameter("availabilityInWarehouse", device.isAvailabilityInWarehouse());
             query.setParameter("factoryID", device.getFactoryID());
-            query.setParameter("id", deviceID);
+            query.setParameter("id", id);
             query.executeUpdate();
             session.getTransaction().commit();
         } catch (Exception e) {
