@@ -8,8 +8,9 @@ package ua.stupin.multithread.task1;
 public class Main {
     public static void main(String[] args) throws InterruptedException {
         for (int i = 49; i >= 0; i--) {
-            new Thread(new NumberPrinterRunnable(i)).start();
-            Thread.sleep(500);
+            Thread thread = new Thread(new NumberPrinterRunnable(i));
+            thread.start();
+            thread.join();
         }
     }
 }
