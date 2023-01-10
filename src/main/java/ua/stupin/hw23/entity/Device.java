@@ -4,13 +4,13 @@ import java.util.Date;
 
 public class Device {
     private final int iD;
-    String type;
-    String modelName;
-    int price;
-    Date creationDate;
-    String description;
-    boolean availabilityInWarehouse;
-    int factoryID;
+    private String type;
+    private String modelName;
+    private int price;
+    private Date creationDate;
+    private String description;
+    private boolean availabilityInWarehouse;
+    private int factoryID;
 
     public Device(int iD, String type, String modelName, int price, Date creationDate, String description, boolean availabilityInWarehouse, int factoryID) {
         this.iD = iD;

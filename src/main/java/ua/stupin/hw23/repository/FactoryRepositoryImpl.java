@@ -9,14 +9,26 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class FactoryRepositoryImpl implements FactoryRepository, GenericRepository<Factory> {
+    private String hostName;
+    private String dbName;
+    private String userName;
+    private String password;
+
+    public FactoryRepositoryImpl(String hostName, String dbName, String userName, String password) {
+        this.hostName = hostName;
+        this.dbName = dbName;
+        this.userName = userName;
+        this.password = password;
+    }
+
     private final ConnectionConfig connectionConfig = new ConnectionConfig();
-    private final String selectFactoryByID = "SELECT * FROM factory WHERE id = ?;";
-    private final String insertValuesIntoFactoryTable = "INSERT INTO factory VALUES " +
+    private final String SELECT_FACTORY_BY_ID = "SELECT * FROM factory WHERE id = ?;";
+    private final String INSERT_VALUES_INTO_FACTORY_TABLE = "INSERT INTO factory VALUES " +
             "(1, 'electronic production', 'Japan')," +
             "(2, 'furniture  production', 'Ukraine')," +
             "(3, 'engine production', 'Germany')," +
             "(4, 'clothes production', 'Poland');";
-    private final String createTableFactory = "CREATE TABLE factory(" +
+    private final String CREATE_TABLE_FACTORY = "CREATE TABLE factory(" +
             "id INT primary key NOT NULL," +
             "name VARCHAR(50)," +
             "country VARCHAR (50)" +
@@ -24,31 +36,28 @@ public class FactoryRepositoryImpl implements FactoryRepository, GenericReposito
 
     @Override
     @SneakyThrows
-    public void createTable(String hostName, String dbName, String userName, String password) {
-        connectionConfig.registerSqlDriver();
-        try (Connection connection = connectionConfig.createConnectionWithSqlServer(hostName, dbName, userName, password);
-             PreparedStatement statement = connection.prepareStatement(createTableFactory)) {
+    public void createTable() {
+        try (Connection connection = connectionConfig.createConnection(hostName, dbName, userName, password);
+             PreparedStatement statement = connection.prepareStatement(CREATE_TABLE_FACTORY)) {
             statement.execute();
         }
     }
 
     @Override
     @SneakyThrows
-    public void insertValuesIntoFactoryTable(String hostName, String dbName, String userName, String password) {
-        connectionConfig.registerSqlDriver();
-        try (Connection connection = connectionConfig.createConnectionWithSqlServer(hostName, dbName, userName, password);
-             PreparedStatement statement = connection.prepareStatement(insertValuesIntoFactoryTable)) {
+    public void insertValuesIntoFactoryTable() {
+        try (Connection connection = connectionConfig.createConnection(hostName, dbName, userName, password);
+             PreparedStatement statement = connection.prepareStatement(INSERT_VALUES_INTO_FACTORY_TABLE)) {
             statement.execute();
         }
     }
 
     @Override
     @SneakyThrows
-    public Factory selectByID(String hostName, String dbName, String userName, String password, int id) {
-        connectionConfig.registerSqlDriver();
+    public Factory selectByID(int id) {
         ResultSet resultSet = null;
-        try (Connection connection = connectionConfig.createConnectionWithSqlServer(hostName, dbName, userName, password);
-             PreparedStatement statement = connection.prepareStatement(selectFactoryByID)) {
+        try (Connection connection = connectionConfig.createConnection(hostName, dbName, userName, password);
+             PreparedStatement statement = connection.prepareStatement(SELECT_FACTORY_BY_ID)) {
             statement.setInt(1, id);
             resultSet = statement.executeQuery();
             resultSet.first();

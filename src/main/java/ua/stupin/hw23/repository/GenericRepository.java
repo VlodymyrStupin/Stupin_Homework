@@ -1,7 +1,7 @@
 package ua.stupin.hw23.repository;
 
 public interface GenericRepository<T> {
-    T selectByID(String hostName, String dbName, String userName, String password, int id);
+    T selectByID(int id);
 
-    public void createTable(String hostName, String dbName, String userName, String password);
+    public void createTable();
 }
